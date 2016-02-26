@@ -1,0 +1,960 @@
+record(bi,"$(IOC):intEnable_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @INT_ENABLE")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+record(bi,"$(IOC):pointSweep_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @POINT_SWEEP")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+record(bi,"$(IOC):rfReset_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @RF_RESET")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+record(bi,"$(IOC):sweepOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @SWEEP_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+record(bi,"$(IOC):ampOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @AMP_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+record(bi,"$(IOC):ampFFOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @AMP_FF_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+record(bi,"$(IOC):ampModifyOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @AMP_MODIFY_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+record(bi,"$(IOC):tuneOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @TUNE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+record(bi,"$(IOC):frontTuneOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @FRONT_TUNE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+record(bi,"$(IOC):tuneFFOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @TUNE_FF_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+record(bi,"$(IOC):tuneModifyOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @TUNE_MODIFY_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):phaseOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @PHASE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):alarm0_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @ALARM0")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):alarm1_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @ALARM1")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):alarm2_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @ALARM2")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):alarm3_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @ALARM3")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):alarm4_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @ALARM4")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):alarm5_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @ALARM5")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):alarm6_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @ALARM6")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):alarm7_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @ALARM7")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):phaseFFOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @PHASE_FF_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):phaseModifyOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @PHASE_MODIFY_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):drvReset_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @DRV_RESET")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):sgMode_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @SG_MODE")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bo,"$(IOC):intEnable_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @INT_ENABLE")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"$(IOC):pointSweep_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @POINT_SWEEP")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"$(IOC):rfReset_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @RF_RESET")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"$(IOC):sweepOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @SWEEP_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"$(IOC):ampOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @AMP_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"$(IOC):ampFFOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @AMP_FF_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"$(IOC):ampModifyOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @AMP_MODIFY_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"$(IOC):tuneOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @TUNE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"$(IOC):frontTuneOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @FRONT_TUNE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"$(IOC):tuneFFOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @TUNE_FF_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"$(IOC):tuneModifyOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @TUNE_MODIFY_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"$(IOC):phaseOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @PHASE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"$(IOC):errorOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @ERROR_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"$(IOC):phaseFFOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @PHASE_FF_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"$(IOC):phaseModifyOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @PHASE_MODIFY_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"$(IOC):drvReset_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @DRV_RESET")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"$(IOC):sgMode_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @SG_MODE")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(ai,"$(IOC):arc_count_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @ARC_COUNT")
+        field(SCAN,"$(Scan)")
+}
+
+record(ai,"$(IOC):fixFrequency_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @FIX_FREQUENCY")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):workPeriod_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @WORK_PERIOD")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):amp_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @AMP_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):ampCoefficient_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @AMP_COEFFICIENT")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):ampPSet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @AMP_P_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):ampISet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @AMP_I_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):ampISet1_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @AMP_I1_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):ampISet2_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @AMP_I2_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):ampISet3_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @AMP_I3_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):biasSet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @BIAS_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):fixTuningAngle_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @FIX_TUNING_ANGLE")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):tuningAngleOffset_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @TUNING_ANGLE_OFFSET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):tunePSet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @TUNE_P_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):tuneISet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @TUNE_I_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):tuneISet1_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @TUNE_I1_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):tuneISet2_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @TUNE_I2_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):tuneISet3_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @TUNE_I3_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):frontBiasSet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @FRONT_BIAS_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):frontTunePSet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @FRONT_TUNE_P_SET")
+        field(SCAN,"$(Scan)")
+}
+record(ai,"$(IOC):frontTuneISet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @FRONT_TUNE_I_SET")
+        field(SCAN,"$(Scan)")
+}
+
+record(ai,"$(IOC):frontFixTuningAngle_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @FRONT_FIX_TUNING_ANGLE")
+        field(SCAN,"$(Scan)")
+}
+
+record(ai,"$(IOC):phase_i_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @PHASE_I")
+        field(SCAN,"$(Scan)")
+}
+
+record(ai,"$(IOC):phase_p_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @PHASE_P")
+        field(SCAN,"$(Scan)")
+}
+
+record(ai,"$(IOC):initial_phase_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+	field(INP, "#C$(Card) S @INITIAL_PHASE")
+        field(SCAN,"$(Scan)")
+}
+
+record(ai,"$(IOC):FF_Delay_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+	field(INP, "#C$(Card) S @FF_DELAY")
+        field(SCAN,"$(Scan)")
+}
+
+record(ao,"$(IOC):fixFrequency_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @FIX_FREQUENCY")
+}
+record(ao,"$(IOC):workPeriod_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @WORK_PERIOD")
+}
+record(ao,"$(IOC):amp_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @AMP_SET")
+}
+record(ao,"$(IOC):ampCoefficient_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @AMP_COEFFICIENT")
+}
+record(ao,"$(IOC):ampPSet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @AMP_P_SET")
+}
+record(ao,"$(IOC):ampISet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @AMP_I_SET")
+}
+record(ao,"$(IOC):ampISet1_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @AMP_I1_SET")
+}
+record(ao,"$(IOC):ampISet2_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @AMP_I2_SET")
+}
+record(ao,"$(IOC):ampISet3_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @AMP_I3_SET")
+}
+record(ao,"$(IOC):biasSet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @BIAS_SET")
+}
+record(ao,"$(IOC):fixTuningAngle_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @FIX_TUNING_ANGLE")
+}
+record(ao,"$(IOC):tuningAngleOffset_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @TUNING_ANGLE_OFFSET")
+}
+record(ao,"$(IOC):tunePSet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @TUNE_P_SET")
+}
+record(ao,"$(IOC):tuneISet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @TUNE_I_SET")
+}
+record(ao,"$(IOC):tuneISet1_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @TUNE_I1_SET")
+}
+record(ao,"$(IOC):tuneISet2_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @TUNE_I2_SET")
+}
+record(ao,"$(IOC):tuneISet3_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @TUNE_I3_SET")
+}
+record(ao,"$(IOC):frontBiasSet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @FRONT_BIAS_SET")
+}
+record(ao,"$(IOC):frontTunePSet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @FRONT_TUNE_P_SET")
+}
+record(ao,"$(IOC):frontTuneISet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @FRONT_TUNE_I_SET")
+}
+record(ao,"$(IOC):frontFixTuningAngle_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @FRONT_FIX_TUNING_ANGLE")
+}
+record(ao,"$(IOC):phase_i_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @PHASE_I")
+}
+
+record(ao,"$(IOC):phase_p_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @PHASE_P")
+}
+
+record(ao,"$(IOC):initial_Phase_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @INITIAL_PHASE")
+}
+
+record(ao,"$(IOC):FF_Delay_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @FF_DELAY")
+}
+
+record(waveform,"$(IOC):wf_1") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_1")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_2") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_2")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_3") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_3")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_4") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_4")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_5") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_5")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_6_a") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_6_A")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_6_b") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_6_B")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_7") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_7")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_8") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_8")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_amp_skew") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_AMP_SKEW")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+	field(FLNK,"$(IOC):asub1")
+}
+
+record(waveform,"$(IOC):wf_error_all") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_ERROR_ALL")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_error_phase") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_ERROR_PHASE")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_error_front") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_ERROR_FRONT")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_error_total") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_ERROR_TOTAL")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_grid") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_GRID")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_front") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C$(Card) S @WF_FRONT")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wf_wr_1") {
+        field(DTYP,"D212 WRITE")
+        field(INP,"#C$(Card) S @WF_WR_1")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wfPeriod_1") {
+        field(SCAN,"1 second")
+        field(DTYP,"Soft Channel")
+        field(INP,"$(IOC):wf_1")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wfPeriod_2") {
+        field(SCAN,"1 second")
+        field(DTYP,"Soft Channel")
+        field(INP,"$(IOC):wf_2")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wfPeriod_3") {
+        field(SCAN,"1 second")
+        field(DTYP,"Soft Channel")
+        field(INP,"$(IOC):wf_3")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wfPeriod_4") {
+        field(SCAN,"1 second")
+        field(DTYP,"Soft Channel")
+        field(INP,"$(IOC):wf_4")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wfPeriod_5") {
+        field(SCAN,"1 second")
+        field(DTYP,"Soft Channel")
+        field(INP,"$(IOC):wf_5")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wfPeriod_6") {
+        field(SCAN,"1 second")
+        field(DTYP,"Soft Channel")
+        field(INP,"$(IOC):wf_6")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wfPeriod_7") {
+        field(SCAN,"1 second")
+        field(DTYP,"Soft Channel")
+        field(INP,"$(IOC):wf_7")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wfPeriod_8") {
+        field(SCAN,"1 second")
+        field(DTYP,"Soft Channel")
+        field(INP,"$(IOC):wf_8")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):wfPeriod_amp_skew") {
+        field(SCAN,"1 second")
+        field(DTYP,"Soft Channel")
+        field(INP,"$(IOC):wf_amp_skew")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"$(IOC):xwf") {
+        field(SCAN,"1 second")
+        field(DTYP,"XWF READ")
+        field(INP,"1")
+	field(EGU,"ms")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(aSub,"$(IOC):asub1") {
+	field(SNAM,"variance")
+	field(FTA, "ULONG")
+	field(FTC, "ULONG")
+	field(INPA, "100")
+	field(INPB, "$(IOC):wf_amp_skew NPP NMS")
+	field(FTB, "DOUBLE")
+	field(NOA, "1")
+	field(NOB, "2048")
+	field(NOC, "1")
+	field(NOVA, "2048")
+	field(FTVA, "DOUBLE")
+	field(NOVB, "2048")
+	field(FTVB, "DOUBLE")
+	field(NOVC, "2048")
+	field(FTVC, "DOUBLE")
+}
