@@ -12,11 +12,10 @@ dbLoadDatabase "dbd/rcsRfIoc.dbd"
 rcsRfIoc_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
-dbLoadTemplate "db/user.substitutions"
-dbLoadRecords "db/dbSubExample.db", "user=RCS"
-dbLoadRecords("db/rcsRf.db", "IOC=rcs:D212, Card=0, Scan=.1 second")
+## dbLoadRecords("db/rcsRf.db", "IOC=rcs:D212, Card=0, Scan=.1 second")
+dbLoadRecords "db/rcsRf.db"
 
 #D212Config(cardNum,index)
+D212Config(1,1)
 D212Config(0,0)
-
 iocInit

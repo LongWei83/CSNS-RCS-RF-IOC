@@ -173,11 +173,8 @@ epicsShareExtern dset *pvar_dset_devSoSoftCallback;
 epicsShareExtern dset *pvar_dset_devSoStdio;
 epicsShareExtern dset *pvar_dset_devSASoft;
 epicsShareExtern dset *pvar_dset_devWfSoft;
-epicsShareExtern dset *pvar_dset_devWfD212;
-epicsShareExtern dset *pvar_dset_devWfWrD212;
-epicsShareExtern dset *pvar_dset_devXWf;
 
-static const char * const deviceSupportNames[47] = {
+static const char * const deviceSupportNames[44] = {
     "devAaiSoft",
     "devAaoSoft",
     "devAiSoft",
@@ -221,13 +218,10 @@ static const char * const deviceSupportNames[47] = {
     "devSoSoftCallback",
     "devSoStdio",
     "devSASoft",
-    "devWfSoft",
-    "devWfD212",
-    "devWfWrD212",
-    "devXWf"
+    "devWfSoft"
 };
 
-static const dset * const devsl[47] = {
+static const dset * const devsl[44] = {
     pvar_dset_devAaiSoft,
     pvar_dset_devAaoSoft,
     pvar_dset_devAiSoft,
@@ -271,10 +265,7 @@ static const dset * const devsl[47] = {
     pvar_dset_devSoSoftCallback,
     pvar_dset_devSoStdio,
     pvar_dset_devSASoft,
-    pvar_dset_devWfSoft,
-    pvar_dset_devWfD212,
-    pvar_dset_devWfWrD212,
-    pvar_dset_devXWf
+    pvar_dset_devWfSoft
 };
 
 epicsShareExtern drvet *pvar_drvet_drvD212;
@@ -288,6 +279,7 @@ static struct drvet *drvsl[1] = {
 };
 
 epicsShareExtern void (*pvar_func_asSub)(void);
+epicsShareExtern void (*pvar_func_register_func_intTestPr)(void);
 
 epicsShareExtern int *pvar_int_asCaDebug;
 epicsShareExtern int *pvar_int_dbRecordsOnceOnly;
@@ -316,9 +308,10 @@ int rcsRfIoc_registerRecordDeviceDriver(DBBASE *pbase)
     }
 
     registerRecordTypes(pbase, 28, recordTypeNames, rtl);
-    registerDevices(pbase, 47, deviceSupportNames, devsl);
+    registerDevices(pbase, 44, deviceSupportNames, devsl);
     registerDrivers(pbase, 1, driverSupportNames, drvsl);
     (*pvar_func_asSub)();
+    (*pvar_func_register_func_intTestPr)();
     iocshRegisterVariable(vardefs);
     return 0;
 }

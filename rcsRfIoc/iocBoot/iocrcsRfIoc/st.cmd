@@ -12,9 +12,11 @@ dbLoadDatabase "dbd/rcsRfIoc.dbd"
 rcsRfIoc_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
-dbLoadRecords("db/rcsRf.db", "IOC=rcs:D212, Card=0, Scan=.1 second")
+## dbLoadRecords("db/rcsRf.db", "IOC=rcs:D212, Card=0, Scan=.1 second")
+dbLoadRecords "db/rcsRf.db"
 
 #D212Config(cardNum,index)
 D212Config(0,0)
+D212Config(1,1)
 
 iocInit
