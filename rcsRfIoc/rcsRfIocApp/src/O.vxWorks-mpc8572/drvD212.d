@@ -138,5 +138,4 @@ drvD212.o: ../drvD212.c \
   /home/RCS/Downloads/base-3.14.12.1/include/drvSup.h \
   /home/RCS/Downloads/base-3.14.12.1/include/errMdef.h \
   /home/RCS/Downloads/base-3.14.12.1/include/epicsExport.h \
-  /home/RCS/Downloads/base-3.14.12.1/include/shareLib.h \
-  /home/RCS/Downloads/base-3.14.12.1/include/registryFunction.h
+  /home/RCS/Downloads/base-3.14.12.1/include/shareLib.h

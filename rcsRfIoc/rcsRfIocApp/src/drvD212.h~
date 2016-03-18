@@ -22,15 +22,12 @@
 #define WAVEFOMR_NUM             0x00000800   /* 2k */
 #define WAVEFORM_SIZE            0x00002004   /* 8k */
 
+#define WF3_ADDR                 4098
+#define WF3_FADDR                4098
+
 #define OPTION_SET               0xAAAAAAAA
 #define OPTION_CLEAR             0x55555555
 
-/* Has been defined in mcpx800.h
-#define CPCIA_INT_LVL            28
-#define CPCIB_INT_LVL            29
-#define CPCIC_INT_LVL            30
-#define CPCID_INT_LVL            31
-*/
 /* Has been defined in cpci6200.h */
 #define PCIE0_INT0_VEC     0
 #define PCIE0_INT1_VEC     1
@@ -43,6 +40,7 @@ typedef struct recPrivate recPrivate;
 
 /* linked list of card structures */
 struct D212Card {
+   struct D212Card *next;
    int cardNum;
    unsigned int bridgeAddr;             /*9656 register*/
    unsigned int fpgaAddr;               /*FPGA register*/
@@ -53,22 +51,11 @@ struct D212Card {
    unsigned int intLine;
    unsigned int fpgaVersion;
    SEM_ID semDMA0;              /*DMA0 interrupt*/
-   SEM_ID semDMA1;              /*DMA1 interrupt*/
    int *buffer;       /*store data transferred via DMA*/
    float *floatBuffer;     /*store processed float data */
-   int *writeBuffer;    /* store int data that need to write to FPGA */
-   float *ampSkewBuffer;
-   float *errorAllBuffer;
    float *errorPhaseBuffer;
-   float *errorFrontBuffer;
-   float *errorTotalBuffer;
-   float *gridBuffer;
-   float *frontBuffer;
-   int errorFlag;
-   /******* no int ***********
-   int interruptNum;
-   ************************/
    IOSCANPVT ioScanPvt;
+   int errorFlag;
 };
 
 struct recPrivate {
@@ -77,7 +64,7 @@ struct recPrivate {
 };
 
 void cpciIntISR(int intLine);
-void dataProcess(D212Card *pCard, int i);
+void dataProcess(D212Card *pCard);
 void int_Enable (D212Card* pCard);
 void int_Disable (D212Card* pCard);
 int int_Enable_get (D212Card* pCard);
@@ -87,4 +74,5 @@ int SweepOption_get (D212Card* pCard);
 void set_Work_Period (D212Card* pCard, float period);
 float get_Work_Period (D212Card* pCard);
 D212Card* getCardStruct (int cardNum);
+
 #endif  /*end of DRV_D212_h*/

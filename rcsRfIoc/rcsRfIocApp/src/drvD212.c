@@ -15,7 +15,6 @@
 #include "parameter.h"
 #include "drvSup.h"
 #include "epicsExport.h"
-#include "registryFunction.h"
 #include <semLib.h>
 #include <dbScan.h>
 
@@ -83,15 +82,13 @@
 #define    REG_Bias_Upload			0x310
 #define    REG_Front_Bias_Upload		0x314
 #define    REG_Reserved_1			0x318
-#define    REG_Reserved_2			0x31C
+#define    REG_Reserved_2			0x31C    	
 
 static long D212Report(int level);
 
-static D212Card *pCard[8];
-static int intTest[8] = {0, 1, 2, 3, 4, 5, 6, 7};
-static int intHasConnect[MAX_INT_SUP] = {0, 0, 0, 0};
-
+static D212Card *firstCard = NULL;
 static int dmaCount = 0;
+static int intHasConnect[MAX_INT_SUP] = {0, 0, 0, 0};
 
 struct {
         long    number;
@@ -106,27 +103,27 @@ epicsExportAddress (drvet, drvD212);
 
 long D212Report (int level)
 {
-   int i = 0;
-   for (i=0;i<8;i++) 
+   D212Card *pCard;
+   for (pCard = firstCard; pCard; pCard = pCard->next) 
    {
       /* print a short report */
-      printf("Card %d with BDF (%d,%d,%d)\n", pCard[i]->cardNum, pCard[i]->bus, pCard[i]->device, pCard[i]->function);
+      printf("Card %d with BDF (%d,%d,%d)\n", pCard->cardNum, pCard->bus, pCard->device, pCard->function);
 
       /* print additional card information */
       if(level >= 1)
       {
-         printf("Bridge PCI Address: 0x%08x\n",  pCard[i]->bridgeAddr);
-         printf("FPGA PCI Address: 0x%08x\n", pCard[i]->fpgaAddr);
-         printf("Interrupt Line: %d\n", pCard[i]->intLine);
+         printf("Bridge PCI Address: 0x%08x\n",  pCard->bridgeAddr);
+         printf("FPGA PCI Address: 0x%08x\n", pCard->fpgaAddr);
+         printf("Interrupt Line: %d\n", pCard->intLine);
       }
 
       if(level >= 2)
       {
          /* print more card information */
-         printf("Index: %d\n", pCard[i]->index);
-         printf("FPGA Version: 0x%08x\n", pCard[i]->fpgaVersion);
-         printf("Buffer Address: 0x%08x\n", (unsigned int) pCard[i]->buffer);
-         printf("Float Buffer Address: 0x%08x\n", (unsigned int) pCard[i]->floatBuffer);
+         printf("Index: %d\n", pCard->index);
+         printf("FPGA Version: 0x%08x\n", pCard->fpgaVersion);
+         printf("Buffer Address: 0x%08x\n", (unsigned int) pCard->buffer);
+         printf("Float Buffer Address: 0x%08x\n", (unsigned int) pCard->floatBuffer);
       }
    }
 
@@ -141,6 +138,10 @@ int D212Config (int cardNum, int index)
    int function;
    unsigned char intLine;
    unsigned int busAddr;
+   int i;
+
+   D212Card *pCard;
+   D212Card *pCardIndex;
 
    /* Check card number for sanity */
    if (cardNum < 0)
@@ -157,6 +158,23 @@ int D212Config (int cardNum, int index)
        return ERROR;
    }
 
+   /* Find end of card list and check for duplicates */
+   for (pCardIndex = firstCard; pCardIndex; pCardIndex = pCardIndex->next)
+   {
+       if (pCardIndex->cardNum == cardNum) 
+       {
+           fprintf (stderr, "D212Configure: cardNum %d already in use\n", 
+                   cardNum);
+           return ERROR;
+       }
+       if (pCardIndex->index == index)
+       {
+           fprintf (stderr, "D212Configure: index %d already in use\n",
+                   index);
+           return ERROR;
+       }
+   }
+
    /* find D212 card, the actual PCI target is PLX9656 bridge chip */
    if(pciFindDevice(PLX9656_VENDOR_ID, PLX9656_DEVICE_ID, index,   
                  &bus, &device, &function) == ERROR)
@@ -167,158 +185,329 @@ int D212Config (int cardNum, int index)
    }
  
    /* Create new card structure */
-   pCard[index] = (D212Card*) malloc (sizeof (D212Card));
-   if (!(pCard[index])) 
+   pCard = (D212Card*) malloc (sizeof (D212Card));
+   if (!pCard) 
    {
        fprintf (stderr, "D212Config: fail to alloc pCard\n");
        return ERROR;
    }
 
-   pCard[index]->cardNum = cardNum;
+   /* add card struct to link list */
+   if (pCardIndex == NULL && firstCard == NULL)
+       firstCard = pCard;
+   else
+   {
+       for(pCardIndex=firstCard; pCardIndex->next!=NULL;
+                 pCardIndex=pCardIndex->next);
+       pCardIndex->next = pCard;
+   }
+
+   pCard->next = NULL;
+   pCard->cardNum = cardNum;
 
    /*BAR0 corresponds to 9656 register*/
    pciConfigInLong (bus, device, function,
                     PCI_CFG_BASE_ADDRESS_0, &busAddr);
    busAddr &= PCI_MEMBASE_MASK;
-   pCard[index]->bridgeAddr = busAddr;
+   pCard->bridgeAddr = busAddr;
  
    /*BAR2 corresponds to FPGA register*/
    pciConfigInLong (bus, device, function,
                     PCI_CFG_BASE_ADDRESS_1, &busAddr);
    busAddr &= PCI_MEMBASE_MASK;
-   pCard[index]->fpgaAddr = busAddr;
+   pCard->fpgaAddr = busAddr;
 
    /* store BDF and index to card structure */
-   pCard[index]->bus = bus;
-   pCard[index]->device = device;
-   pCard[index]->function = function;
-   pCard[index]->index = index;
+   pCard->bus = bus;
+   pCard->device = device;
+   pCard->function = function;
+   pCard->index = index;
 
    /* get interrupt vector */
    pciConfigInByte (bus, device, function,
                     PCI_CFG_DEV_INT_LINE, &intLine);
-   pCard[index]->intLine = intLine;
-
-   pCard[index]->fpgaVersion = PCI_IN_LONG(pCard[index]->fpgaAddr + REG_Identifier); 
+   pCard->intLine = intLine;
 
    /* create DMA0 semphore */
-   pCard[index]->semDMA0 = semBCreate(SEM_Q_PRIORITY, SEM_EMPTY);
-   if( pCard[index]->semDMA0 == NULL)
+   pCard->semDMA0 = semBCreate(SEM_Q_PRIORITY, SEM_EMPTY);
+   if( pCard->semDMA0 == NULL)
    {
        fprintf(stderr,"create semDMA0 error\n");
        return ERROR;
    }
 
-   /* create DMA1 semphore */
-   pCard[index]->semDMA1 = semBCreate(SEM_Q_PRIORITY, SEM_EMPTY);
-   if( pCard[index]->semDMA1 == NULL)
-   {
-       fprintf(stderr,"create semDMA1 error\n");
-       return ERROR;
-   }
-
    /* allocate data buffer */
-   pCard[index]->buffer = (int *) calloc (DMA_TRANSFER_NUM, sizeof(int));
-   if (!pCard[index]->buffer)
+   pCard->buffer = (int *) calloc (DMA_TRANSFER_NUM, sizeof(int));
+   if (!pCard->buffer)
    {
        fprintf (stderr, "D212Config: fail to alloc buffer\n");
        return ERROR;
    }
 
    /* allocate processed float data buffer */
-   pCard[index]->floatBuffer = (float *) calloc (DMA_TRANSFER_NUM+0x800+1, sizeof(float));
-   if (!pCard[index]->floatBuffer)
+   pCard->floatBuffer = (float *) calloc (DMA_TRANSFER_NUM+0x800+1, sizeof(float));
+   if (!pCard->floatBuffer)
    {
        fprintf (stderr, "D212Config: fail to alloc float buffer\n");
        return ERROR;
    }
+   
+   pCard->errorFlag = 0;
 
-   if(! intHasConnect[pCard[index]->intLine - PCIE0_INT0_VEC])
+   scanIoInit(&pCard->ioScanPvt); 
+
+   pCard->fpgaVersion = FPGA_REG_READ32(pCard->fpgaAddr, REG_Identifier); 
+
+   /* ensure that each interrupt line of four be connected only once */
+
+   if(! intHasConnect[pCard->intLine - PCIE0_INT0_VEC])
    {
       /* connect ISR to interrupt, use intLine as interrupt vector */
-      if(intConnect(INUM_TO_IVEC(pCard[index]->intLine), cpciIntISR, pCard[index]->intLine) == ERROR)
+      if(intConnect(INUM_TO_IVEC(pCard->intLine), cpciIntISR, pCard->intLine) == ERROR)
       {
-         printf("intConnect error: Card %d\tintLine %d\n", pCard[index]->cardNum, pCard[index]->intLine);
+         printf("intConnect error: Card %d\tintLine %d\n", pCard->cardNum, pCard->intLine);
          return ERROR;
       }
 
       /*enable interrupt*/
-      if(intEnable(pCard[index]->intLine) == ERROR)
+      if(intEnable(pCard->intLine) == ERROR)
       {
-         printf("intEnable error: Card %d\tintLine %d\n", pCard[index]->cardNum, pCard[index]->intLine);
+         printf("intEnable error: Card %d\tintLine %d\n", pCard->cardNum, pCard->intLine);
          return ERROR;
       }
 
-      intHasConnect[pCard[index]->intLine - PCIE0_INT0_VEC] = 1;
+      intHasConnect[pCard->intLine - PCIE0_INT0_VEC] = 1;
 
-      printf("Card %d, intLine %d: now intConnect\n\n", pCard[index]->cardNum, pCard[index]->intLine);
+      printf("Card %d, intLine %d: now intConnect\n\n", pCard->cardNum, pCard->intLine);
    }
    else
    {
-      printf("Card %d, intLine %d: intLine has been connected already\n\n", pCard[index]->cardNum, pCard[index]->intLine);
+      printf("Card %d, intLine %d: intLine has been connected already\n\n", pCard->cardNum, pCard->intLine);
    }
 
-   plx9656Init(pCard[index]);
+   /* initialize plx9656 bridge chip */
+   plx9656Init(pCard);
 
-/*   if( ERROR == taskSpawn("dataProcessTask"+index, 20, VX_FP_TASK, 10000, (FUNCPTR) dataProcess, (int) pCard[index], index, 0, 0, 0, 0, 0, 0, 0, 0))
+   /* start data process task */
+   if( ERROR == taskSpawn("dataProcessTask", 100, VX_FP_TASK, 10000, (FUNCPTR) dataProcess, (int) pCard, 0, 0, 0, 0, 0, 0, 0, 0, 0))
    {
       printf("Fail to spawn data process task!\n");
    }
-*/
+
    /* print card configuration information */
-   printf("Card %d successfully initialized:\n", pCard[index]->cardNum);
-   printf("BDF: %d %d %d\n", pCard[index]->bus, pCard[index]->device, pCard[index]->function);
-   printf("Index: %d\n", pCard[index]->index);
-   printf("Bridge PCI Address: 0x%08x\n", pCard[index]->bridgeAddr);
-   printf("FPGA PCI Address: 0x%08x\n", pCard[index]->fpgaAddr);
-   printf("Interrupt Line: %d\n", pCard[index]->intLine);
-   printf("FPGA Version: 0x%08x\n", pCard[index]->fpgaVersion);
-   printf("Buffer Address: 0x%08x\n", (unsigned int) pCard[index]->buffer);
-   printf("Float Buffer Address: 0x%08x\n", (unsigned int) pCard[index]->floatBuffer);
+   printf("Card %d successfully initialized:\n", pCard->cardNum);
+   printf("BDF: %d %d %d\n", pCard->bus, pCard->device, pCard->function);
+   printf("Index: %d\n", pCard->index);
+   printf("Bridge PCI Address: 0x%08x\n", pCard->bridgeAddr);
+   printf("FPGA PCI Address: 0x%08x\n", pCard->fpgaAddr);
+   printf("Interrupt Line: %d\n", pCard->intLine);
+   printf("FPGA Version: 0x%08x\n", pCard->fpgaVersion);
+   printf("Buffer Address: 0x%08x\n", (unsigned int) pCard->buffer);
+   printf("Float Buffer Address: 0x%08x\n", (unsigned int) pCard->floatBuffer);
    printf("Start IOC!!!\n");
 
    return 0;
 }
 
+/*---------------------Comment for hardware register access--------------------
+ * a) CPCI_WRITE8(pCard->bridgeAddr, REG_9656_DMA0_CSR, 0x09); 
+ *
+ *    Clear DMA0 Interrupt
+ *    Following is the equivalent:
+ *    regRead8 = CPCI_READ8(pCard->bridgeAddr, REG_9656_DMA0_CSR);
+ *    regRead8 |= PLX9656_DMA0_INTERRUPT_CLEAR;
+ *    CPCI_WRITE8(pCard->bridgeAddr, REG_9656_DMA0_CSR, regRead8);
+ *
+ * b) CPCI_WRITE32(pCard->bridgeAddr, REG_9656_INTCSR, 0x0f0C0900);
+ *
+ *    Enable LINTi#
+ *    Following is the equivalent:
+ *    regRead32 = CPCI_READ32(pCard->bridgeAddr, REG_9656_INTCSR);
+ *    regRead32 |= PLX9656_INTCSR_LINTi_ENABLE;
+ *    CPCI_WRITE32(pCard->bridgeAddr, REG_9656_INTCSR, regRead32);       
+ *
+ * c) CPCI_WRITE32(pCard->bridgeAddr, REG_9656_INTCSR, 0x0f0C0100);
+ *
+ *    Disable LINTi#, i.e. Clear Local Interrupt
+ *    Following is the equivalent:
+ *    regRead32 = CPCI_READ32(pCard->bridgeAddr, REG_9656_INTCSR);
+ *    regRead32 &= ~PLX9656_INTCSR_LINTi_ENABLE;
+ *    CPCI_WRITE32(pCard->bridgeAddr, REG_9656_INTCSR, regRead32);
+ *
+ * d) CPCI_WRITE32(pCard->bridgeAddr, REG_9656_DMA0_DPR, 0x00000008);
+ *
+ *    Select transfers from the Local Bus to the PCI Bus
+ *    Following is the equivalent:
+ *    regRead32 = CPCI_READ32(pCard->bridgeAddr, REG_9656_DMA0_DPR);
+ *    regRead32 |= PLX9656_DMA0_DIRECT_LOC_TO_PCI;
+ *    CPCI_WRITE32(pCard->bridgeAddr, REG_9656_DMA0_DPR, regRead32);
+ *
+ * e) CPCI_WRITE8(pCard->bridgeAddr, REG_9656_DMA0_CSR, 0x03);
+ *
+ *    DMA Channel 0 Start
+ *    Following is the equivalent:
+ *    regRead8 = CPCI_READ8(pCard->bridgeAddr, REG_9656_DMA0_CSR);
+ *    regRead8 |= PLX9656_DMA0_START;
+ *    CPCI_WRITE8(pCard->bridgeAddr, REG_9656_DMA0_CSR, regRead8);
+ *
+ * f) CPCI_WRITE32(pCard->fpgaAddr, REG_CONTROL, 0x00000002);
+ *
+ *    Disable FIFO and Interrupt
+ *    Following is the equivalent:
+ *    regRead32 = CPCI_READ32(pCard->fpgaAddr, REG_CONTROL);
+ *    regRead32 &= ~ D212_CR_FIFO_ENABLE;
+ *    regRead32 &= ~ D212_CR_INT_ENABLE;
+ *    CPCI_WRITE32(pCard->fpgaAddr, REG_CONTROL, regRead32);
+ *
+ *----------------end of Comment for hardware register access------------------
+ */
+
+/* interrupt service routine, one for 8 cards, with 4 different parameters */
 void cpciIntISR(int intLine)
 {
-   int lock = intLock();
-   int i = 0;
+   D212Card *pCard;
 
    /* check which card generate interrupt */
-   for (i = 0; i < 8; i++)
+   for (pCard = firstCard; pCard; pCard = pCard->next)
    {
-      if(intLine == pCard[i]->intLine)
+      if(intLine == pCard->intLine)
       {
          /* FPGA interrupt */
-         if(BRIDGE_REG_READ32(pCard[i]->bridgeAddr, REG_9656_INTCSR) & PLX9656_INTCSR_LINTi_ACTIVE) 
+         if(BRIDGE_REG_READ32(pCard->bridgeAddr, REG_9656_INTCSR) & PLX9656_INTCSR_LINTi_ACTIVE) 
          {
-            int_Clear(pCard[i]);
-            BRIDGE_REG_WRITE32(pCard[i]->bridgeAddr, REG_9656_DMA0_PCI_ADR, (unsigned int) (pCard[i]->buffer));
-            BRIDGE_REG_WRITE32(pCard[i]->bridgeAddr, REG_9656_DMA0_LOCAL_ADR, REG_AMP_Upload);
-            BRIDGE_REG_WRITE32(pCard[i]->bridgeAddr, REG_9656_DMA0_SIZE, (WAVEFORM_SIZE + 4)*8);
-            BRIDGE_REG_WRITE32(pCard[i]->bridgeAddr, REG_9656_DMA0_DPR, 0x00000008);
-            BRIDGE_REG_WRITE32(pCard[i]->bridgeAddr, REG_9656_DMA0_CSR, 0x03);
-            intTest[i]++;
-         }
-         else if(BRIDGE_REG_READ32(pCard[i]->bridgeAddr, REG_9656_INTCSR) & PLX9656_INTCSR_DMA0_INT_ACTIVE)
+            /* clear FPGA interrupt, i.e. de-assert LINTi line */
+            int_Clear(pCard);
+
+            /* start DMA Channel 0 transfer, 8k bytes data at once */
+            BRIDGE_REG_WRITE32(pCard->bridgeAddr, REG_9656_DMA0_PCI_ADR, (unsigned int) (pCard->buffer));
+            BRIDGE_REG_WRITE32(pCard->bridgeAddr, REG_9656_DMA0_LOCAL_ADR, REG_AMP_Upload);
+            BRIDGE_REG_WRITE32(pCard->bridgeAddr, REG_9656_DMA0_SIZE, WAVEFORM_SIZE + 4);
+            BRIDGE_REG_WRITE32(pCard->bridgeAddr, REG_9656_DMA0_DPR, 0x00000008);
+            BRIDGE_REG_WRITE32(pCard->bridgeAddr, REG_9656_DMA0_CSR, 0x03);
+            dmaCount++;
+         }     
+         /* DMA Channel 0 interrupt, Transfer Data from hardware to CPU board */
+         else if(BRIDGE_REG_READ32(pCard->bridgeAddr, REG_9656_INTCSR) & PLX9656_INTCSR_DMA0_INT_ACTIVE)
          {
-            BRIDGE_REG_WRITE8(pCard[i]->bridgeAddr, REG_9656_DMA0_CSR, 0x09);
+            /* clear DMA Channel 0 interrupt */
+            BRIDGE_REG_WRITE8(pCard->bridgeAddr, REG_9656_DMA0_CSR, 0x09);
+            /* read back, avoid spurious interrupt */
+   /*         tmp8 = BRIDGE_REG_READ8(pCard->bridgeAddr, REG_9656_DMA0_CSR);*/
+
+            /* re-enable FPGA interrupt */
+     /*       BRIDGE_REG_WRITE32(pCard->bridgeAddr, REG_9656_INTCSR, 0x0f0C0900); */
+
+            if(dmaCount < 8)
+            {
+               /* start DMA Channel 0 transfer, 8k bytes data at once */
+               BRIDGE_REG_WRITE32(pCard->bridgeAddr, REG_9656_DMA0_PCI_ADR, (unsigned int) (pCard->buffer + 2049 * dmaCount));
+               BRIDGE_REG_WRITE32(pCard->bridgeAddr, REG_9656_DMA0_LOCAL_ADR, REG_AMP_Upload + 4 * dmaCount);
+               BRIDGE_REG_WRITE32(pCard->bridgeAddr, REG_9656_DMA0_SIZE, WAVEFORM_SIZE + 4);
+               BRIDGE_REG_WRITE32(pCard->bridgeAddr, REG_9656_DMA0_DPR, 0x00000008);
+               BRIDGE_REG_WRITE32(pCard->bridgeAddr, REG_9656_DMA0_CSR, 0x03);
+               dmaCount++; 
+            }
+            else
+            {
+               dmaCount = 0;
+               /* synchronize data process task */
+               semGive(pCard->semDMA0);
+            }
          }
       }
    }
-   intUnlock(lock);
 }
 
-void dataProcess(D212Card *pCard, int i)
+/*---------------------Comment for hardware register access--------------------
+ * a) CPCI_WRITE32(pCard->fpgaAddr, REG_CONTROL, 0x00000007);
+ *
+ *    Enable FIFO, Period Generation, and Interrupt
+ *    Following is the equivalent:
+ *    regRead32 = CPCI_READ32(fpgaAddr, REG_CONTROL);
+ *    regRead32 |= ( D212_CR_FIFO_ENABLE |
+ *                   D212_CR_PERIOD_GEN |
+ *                   D212_CR_INT_ENABLE );
+ *    CPCI_WRITE32(fpgaAddr, REG_CONTROL, regRead32);
+ *
+ *----------------end of Comment for hardware register access------------------
+ */
+
+/* data process task, one for each of 8 cards */
+void dataProcess(D212Card *pCard)
 {
+   int i;
+   float *pDest;
+   int *pSrc;
+
+   /* infinite loop, used for data process */
    while(1)
    {
+      /* synchronize with ISR */
       semTake(pCard->semDMA0, WAIT_FOREVER);
-      intTest[i]++;
+
+      /* process waveform 1 data */
+      pDest = pCard->floatBuffer + WF1_FADDR;
+      pSrc = pCard->buffer + WF1_ADDR;
+      for(i=1; i<WAVEFOMR_NUM+1; i++)
+      {
+           pDest[i] =  (pSrc[i]>>12) * CALC_WF1_MUL + CALC_WF1_ADD;
+      }
+
+      /* process waveform 3 data */      
+      pDest = pCard->floatBuffer + WF3_FADDR;
+      pSrc = pCard->buffer + WF3_ADDR;
+      for(i=1; i<WAVEFOMR_NUM+1; i++)
+      {
+           pDest[i] =  pSrc[i] * CALC_WF3_MUL + CALC_WF3_ADD;
+      }
+
+      /* Inform records to retrieve the data */
+      scanIoRequest(pCard->ioScanPvt);
    }
 }
 
+/*---------------------Comment for hardware register access--------------------
+ * a) CPCI_WRITE32(bridgeAddr, REG_9656_INTCSR, 0x0f0C0900);
+ *
+ *    Enable PCI Interrupt, LINTi# and DMA0 Interrupt
+ *    Disable LINTo#
+ *    Following is the equivalent:
+ *
+ *    regRead32 = CPCI_READ32(bridgeAddr, REG_9656_INTCSR);
+ *    regRead32 &= ~PLX9656_INTCSR_LINTo_ENABLE;
+ *    regRead32 |= ( PLX9656_INTCSR_PCI_INT_ENABLE |
+ *                   PLX9656_INTCSR_LINTi_ENABLE   |
+ *                   PLX9656_INTCSR_DMA0_INT_ENABLE|
+ *                   PLX9656_INTCSR_DMA1_INT_ENABLE );
+ *    CPCI_WRITE32(bridgeAddr, REG_9656_INTCSR, regRead32);
+ *
+ * b) CPCI_WRITE8(bridgeAddr, REG_9656_DMA0_CSR, 0x01);
+ *
+ *    Enable DMA Channel 0
+ *    Following is the equivalent:
+ *    regRead8 = CPCI_READ8(bridgeAddr, REG_9656_DMA0_CSR);
+ *    regRead8 |= PLX9656_DMA0_ENABLE;
+ *    CPCI_WRITE8(bridgeAddr, REG_9656_DMA0_CSR, regRead8);
+ *
+ * c) CPCI_WRITE32(bridgeAddr, REG_9656_DMA0_MODE, 0x00020d43);
+ *
+ *    Enable Local Burst, DMA0 Done Interrupt
+ *    Select 32 Data Witth, Constant Local Address, DMA0 Interrupt to INTA#
+ *    Following is the equivalent:
+ *    regRead32 = CPCI_READ32(bridgeAddr, REG_9656_DMA0_MODE);
+ *    regRead32 |= ( PLX9656_DMA0_DATA_WIDTH_32 |
+ *                   PLX9656_DMA0_LOC_BURST_ENABLE |
+ *                   PLX9656_DMA0_DONE_INT_ENABLE |
+ *                   PLX9656_DMA0_LOCAL_ADDR_CONST |
+ *                   PLX9656_DMA0_INT_SELECT_INTA );
+ *    CPCI_WRITE32(bridgeAddr, REG_9656_DMA0_MODE, regRead32);
+ *
+ * d) The initialization of DMA Channel 1 is equivalent to Channel 0
+ *
+ *----------------end of Comment for hardware register access------------------
+ */
+
+/* initialize PLX9656 bridge chip */
 void plx9656Init(D212Card *pCard)
 {
    int bridgeAddr = pCard->bridgeAddr;
@@ -329,12 +518,25 @@ void plx9656Init(D212Card *pCard)
    BRIDGE_REG_WRITE8(bridgeAddr, REG_9656_DMA0_CSR, 0x01); 
 /*   BRIDGE_REG_WRITE32(bridgeAddr, REG_9656_DMA0_MODE, 0x00020d43); */ 
    BRIDGE_REG_WRITE32(bridgeAddr, REG_9656_DMA0_MODE, 0x00020dC3); 
+        
+
+   BRIDGE_REG_WRITE8(bridgeAddr, REG_9656_DMA1_CSR, 0x01);
+   BRIDGE_REG_WRITE32(bridgeAddr, REG_9656_DMA1_MODE, 0x00020d43);
 }
 
-void int_Clear (D212Card* pCard)
+
+
+/* get card structure by card number */
+D212Card* getCardStruct (int cardNum)
 {
-   FPGA_REG_WRITE32(pCard->fpgaAddr, REG_Int_Clear, OPTION_SET);
+   D212Card* pCard;
+   for (pCard = firstCard; pCard; pCard = pCard->next)
+      if (pCard->cardNum == cardNum)
+         return pCard;
+   return NULL;
 }
+
+
 
 void int_Enable (D212Card* pCard)
 {
@@ -348,10 +550,15 @@ void int_Disable (D212Card* pCard)
 
 int int_Enable_get (D212Card* pCard)
 {
-   if (FPGA_REG_READ32(pCard->fpgaAddr, REG_Int_Enable) == OPTION_SET)
+   if (FPGA_REG_READ32(pCard->fpgaAddr, REG_Int_Enable) == 0xAAAAAAAA)
       return 1;
-   else
+   else 
       return 0;
+}
+
+void int_Clear (D212Card* pCard)
+{
+   FPGA_REG_WRITE32(pCard->fpgaAddr, REG_Int_Clear, OPTION_SET);
 }
 
 void set_Sweep_Option (D212Card* pCard)
@@ -366,7 +573,7 @@ void clear_Sweep_Option (D212Card* pCard)
 
 int SweepOption_get (D212Card* pCard)
 {
-   if (FPGA_REG_READ32(pCard->fpgaAddr, REG_Sweep_Option) == OPTION_SET)
+   if (FPGA_REG_READ32(pCard->fpgaAddr, REG_Sweep_Option) == 0xAAAAAAAA)
       return 1;
    else 
       return 0;
@@ -383,19 +590,3 @@ float get_Work_Period (D212Card* pCard)
 {
    return (FPGA_REG_READ32(pCard->fpgaAddr, REG_Work_Period_Set) - CALC_Work_Period_Set_ADD) / CALC_Work_Period_Set_MUL;
 }
-
-D212Card* getCardStruct (int cardNum)
-{
-   return pCard[cardNum];
-}
-
-void intTestPr(int i){
-	printf("%d\n",intTest[i]);
-}
-
-void intTestCl(int i){
-	intTest[i] = 0;
-}
-
-
-epicsRegisterFunction(intTestPr);

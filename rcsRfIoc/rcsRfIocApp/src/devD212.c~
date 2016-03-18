@@ -178,22 +178,6 @@
                 break;\
         }
 
-/******* no int ***********
-#define CHECK_LIPARM(PARM,VAL)\
-        if (!strncmp(pli->inp.value.vmeio.parm,(PARM),strlen((PARM)))) {\
-                ((recPrivate*)pli->dpvt)->function=VAL;\
-                parmOK=1;\
-                break;\
-        }
-
-#define CHECK_LOPARM(PARM,VAL)\
-        if (!strncmp(plo->out.value.vmeio.parm,(PARM),strlen((PARM)))) {\
-                ((recPrivate*)plo->dpvt)->function=VAL;\
-                parmOK=1;\
-                break;\
-        }
-******************************/
-
 #define CHECK_WFPARM(PARM,VAL)\
         if (!strncmp(pwf->inp.value.vmeio.parm,(PARM),strlen((PARM)))) {\
                 ((recPrivate*)pwf->dpvt)->function=VAL;\
@@ -207,7 +191,6 @@
                 parmOK=1;\
                 break;\
         }
-
 /* function prototypes */
 static long init_bi(struct biRecord *pbi);
 static long read_bi(struct biRecord *pbi);
@@ -220,6 +203,12 @@ static long read_ai(struct aiRecord *pai);
 
 static long init_ao(struct aoRecord *pao);
 static long write_ao(struct aoRecord *pao);
+
+static long init_wf(struct waveformRecord *pwf);
+static long init_xwf(struct waveformRecord *pwf);
+static long read_wf(struct waveformRecord *pwf);
+static long read_xwf(struct waveformRecord *pwf);
+static long wfget_ioint_info(int cmd, struct waveformRecord *pwf, IOSCANPVT *ppvt);
 
 struct {
         long            number;
@@ -256,6 +245,80 @@ struct {
 
 epicsExportAddress(dset,devBoD212);
 
+struct { 
+        long            number;
+        DEVSUPFUN       dev_report;
+        DEVSUPFUN       init;
+        DEVSUPFUN       init_record; 
+        DEVSUPFUN       get_ioint_info;
+        DEVSUPFUN       read_ai;
+        DEVSUPFUN       special_linconv;
+}devAiD212 = {
+        6,
+        NULL,
+        NULL,
+        init_ai,
+        NULL,
+        read_ai,
+        NULL};
+
+epicsExportAddress(dset,devAiD212);
+
+struct {
+        long            number;
+        DEVSUPFUN       report;
+        DEVSUPFUN       init;
+        DEVSUPFUN       init_record;
+        DEVSUPFUN       get_ioint_info;
+        DEVSUPFUN       write_ao;
+        DEVSUPFUN       special_linconv;
+}devAoD212 = {
+        6,
+        NULL,
+        NULL,
+        init_ao,
+        NULL,
+        write_ao,
+        NULL};
+
+epicsExportAddress(dset,devAoD212);
+
+struct {
+        long            number;
+        DEVSUPFUN       report;
+        DEVSUPFUN       init;
+        DEVSUPFUN       init_record;
+        DEVSUPFUN       get_ioint_info;
+        DEVSUPFUN       read_wf;
+} devWfD212 = {
+        5,
+        NULL,
+        NULL,
+        init_wf,
+        wfget_ioint_info,
+        read_wf
+};
+
+epicsExportAddress(dset,devWfD212);
+
+struct {
+	long		number;
+	DEVSUPFUN	report;
+	DEVSUPFUN	init;
+	DEVSUPFUN	init_record;
+	DEVSUPFUN	get_ioint_info;
+	DEVSUPFUN	read_wf;
+} devXWf = {
+	5,
+	NULL,
+	NULL,
+	init_xwf,
+	NULL,
+	read_xwf
+};
+
+epicsExportAddress(dset,devXWf);
+
 static long init_bi(struct biRecord *pbi) {
     int parmOK = 0;
 
@@ -270,7 +333,7 @@ static long init_bi(struct biRecord *pbi) {
 
     ((recPrivate*) pbi->dpvt)->pCard = getCardStruct(pbi->inp.value.vmeio.card);
     do {
-        CHECK_BIPARM("INT_ENABLE",   CPCI_BI_INT_ENABLE);
+        CHECK_BIPARM("INT_ENABLE",   CPCI_BI_INT_ENABLE);  
         CHECK_BIPARM("SWEEP_OPTION",   CPCI_BI_SWEEP_OPTION);
     } while(0);
 
@@ -288,7 +351,7 @@ static long read_bi(struct biRecord *pbi) {
     switch (((recPrivate*)pbi->dpvt)->function) {
        case CPCI_BI_INT_ENABLE:
            pbi->val = int_Enable_get(((recPrivate*)pbi->dpvt)->pCard);
-           break;
+           break;    
        case CPCI_BI_SWEEP_OPTION:
            pbi->val = SweepOption_get(((recPrivate*)pbi->dpvt)->pCard);
            break;
@@ -328,6 +391,7 @@ static long init_bo(struct boRecord *pbo) {
         return (S_db_badField);
     }
 
+    /* init value */
     switch(((recPrivate*)pbo->dpvt)->function) {
        case CPCI_BO_INT_ENABLE:
            pbo->val=0;
@@ -370,44 +434,6 @@ static long write_bo(struct boRecord *pbo) {
     return 0;
 }
 
-struct { 
-        long            number;
-        DEVSUPFUN       dev_report;
-        DEVSUPFUN       init;
-        DEVSUPFUN       init_record; 
-        DEVSUPFUN       get_ioint_info;
-        DEVSUPFUN       read_ai;
-        DEVSUPFUN       special_linconv;
-}devAiD212 = {
-        6,
-        NULL,
-        NULL,
-        init_ai,
-        NULL,
-        read_ai,
-        NULL};
-
-epicsExportAddress(dset,devAiD212);
-
-struct {
-        long            number;
-        DEVSUPFUN       report;
-        DEVSUPFUN       init;
-        DEVSUPFUN       init_record;
-        DEVSUPFUN       get_ioint_info;
-        DEVSUPFUN       write_ao;
-        DEVSUPFUN       special_linconv;
-}devAoD212 = {
-        6,
-        NULL,
-        NULL,
-        init_ao,
-        NULL,
-        write_ao,
-        NULL};
-
-epicsExportAddress(dset,devAoD212);
-
 static long init_ai(struct aiRecord *pai)
 {
     int signal;
@@ -424,8 +450,7 @@ static long init_ai(struct aiRecord *pai)
 
     pai->dpvt = (void*) calloc(1, sizeof(recPrivate*));
 
-    ((recPrivate*) pai->dpvt)->pCard = getCardStruct(pai->inp.value.vmeio.card);
-    do {
+    ((recPrivate*) pai->dpvt)->pCard = getCardStruct(pai->inp.value.vmeio.card);    do {
         CHECK_AIPARM("WORK_PERIOD", CPCI_AI_WORK_PERIOD);
     } while(0);
 
@@ -445,10 +470,7 @@ static long read_ai(struct aiRecord *pai) {
 
     switch (((recPrivate*)pai->dpvt)->function) {
        case CPCI_AI_WORK_PERIOD:
-/*
            pai->val=get_Work_Period(((recPrivate*)pai->dpvt)->pCard);
-*/
-           pai->val = pai->inp.value.vmeio.card;
            break;
        default:
            recGblRecordError(S_db_badField,(void *)pai,
@@ -488,6 +510,7 @@ static long init_ao(struct aoRecord *pao)
         return (S_db_badField);
     }
 
+    /* init value */
     switch (((recPrivate*)pao->dpvt)->function) {
        case CPCI_AO_WORK_PERIOD:
            pao->val=0.0;
@@ -518,5 +541,102 @@ static long write_ao(struct aoRecord *pao) {
     }
 
     pao->udf=0;
+    return 0;
+}
+
+static long init_wf(struct waveformRecord *pwf) {
+    int parmOK = 0;
+
+    if (pwf->inp.type!=VME_IO) {
+        recGblRecordError(S_db_badField, (void *)pwf,
+                          "devWfD212 Init_record, Illegal INP");
+        pwf->pact=TRUE;
+        return (S_db_badField);
+    }
+
+    pwf->dpvt = (void*) calloc(1, sizeof(recPrivate*));
+
+    ((recPrivate*) pwf->dpvt)->pCard = getCardStruct(pwf->inp.value.vmeio.card);
+
+    do {
+        CHECK_WFPARM("WF_1", CPCI_WF_1);
+        CHECK_WFPARM("WF_3", CPCI_WF_3);
+    } while(0);
+
+    if (!parmOK) {
+        recGblRecordError(S_db_badField, (void *)pwf,
+                      "devWfD212 Init_record, bad parm");
+        pwf->pact=TRUE;
+        return (S_db_badField);
+    }
+
+    if (pwf->ftvl != DBF_FLOAT) {
+        recGblRecordError(S_db_badField, (void *)pwf,
+                   "devWfD212 (init_record) Illegal FTVL field");
+        return(S_db_badField);
+    }
+
+    return 0;
+}
+
+static long read_wf(struct waveformRecord *pwf) {
+    int numRead = pwf->nelm;
+    float *pSrc;
+    float *pDest = pwf->bptr;
+    switch (((recPrivate*)pwf->dpvt)->function) {
+       case CPCI_WF_3:
+          pSrc = ((recPrivate*)pwf->dpvt)->pCard->floatBuffer + WF3_FADDR + 1;
+          memcpy(pDest, pSrc, numRead*sizeof(float));
+          break;
+       default:
+           recGblRecordError(S_db_badField,(void *)pwf,
+                    "devWfD212 Read_wf, bad parm");
+           return(S_db_badField);
+    } 
+
+    pwf->nord = numRead;
+
+    return 0;
+}
+
+
+static long init_xwf(struct waveformRecord *pwf) {
+
+    switch(pwf->inp.type){
+	case CONSTANT:
+	case PV_LINK:
+	case DB_LINK:
+	case CA_LINK:
+		break;
+	default:
+		recGblRecordError(S_db_badField,(void *)pwf,
+                    "devXWF (init_xwf) Illegal INP field");
+		return(S_db_badField);
+    }
+    return 0;
+}
+
+static long read_xwf(struct waveformRecord *pwf) {
+    int numRead = pwf->nelm;
+    float *pDest;
+    float a[2048]={0.0};
+    int i;
+    	for(i=0;i<2048;i++)
+	{
+		a[i]=i*22.5/2047-2.5;
+	}
+	pDest=pwf->bptr;
+	memcpy(pDest,&a[0],2048*sizeof(float));
+	if(numRead>0){
+		pwf->nord=numRead;
+		if(pwf->tsel.type==CONSTANT && pwf->tse==epicsTimeEventDeviceTime)
+			dbGetTimeStamp(&pwf->inp,&pwf->time);
+	}
+   return 0;
+}
+
+static long wfget_ioint_info(int cmd, struct waveformRecord *pwf,
+                           IOSCANPVT *ppvt) {
+    *ppvt = ((recPrivate*)pwf->dpvt)->pCard->ioScanPvt;
     return 0;
 }
