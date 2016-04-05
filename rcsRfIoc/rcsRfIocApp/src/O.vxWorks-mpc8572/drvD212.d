@@ -126,16 +126,18 @@ drvD212.o: ../drvD212.c \
   /home/RCS/workbench/vxworks-6.8/target/h/copyright_wrs.h \
   /home/RCS/workbench/vxworks-6.8/target/h/sys/taskDefs.h \
   /home/RCS/workbench/vxworks-6.8/target/h/logLib.h \
+  /home/RCS/Downloads/base-3.14.12.1/include/registryFunction.h \
+  /home/RCS/Downloads/base-3.14.12.1/include/shareLib.h \
   /home/RCS/workbench/vxworks-6.8/target/h/drv/pci/pciConfigLib.h \
   /home/RCS/workbench/vxworks-6.8/target/h/pciClass.h \
   /home/RCS/workbench/vxworks-6.8/target/h/arch/ppc/ivPpc.h ../drvD212.h \
   /home/RCS/Downloads/base-3.14.12.1/include/dbScan.h \
   /home/RCS/workbench/vxworks-6.8/target/h/limits.h \
   /home/RCS/workbench/vxworks-6.8/target/h/tool/gnu/limits.h \
-  /home/RCS/Downloads/base-3.14.12.1/include/menuScan.h \
-  /home/RCS/Downloads/base-3.14.12.1/include/shareLib.h ../plx9656.h \
+  /home/RCS/Downloads/base-3.14.12.1/include/menuScan.h ../plx9656.h \
   ../llrfCommonIO.h ../parameter.h \
   /home/RCS/Downloads/base-3.14.12.1/include/drvSup.h \
   /home/RCS/Downloads/base-3.14.12.1/include/errMdef.h \
   /home/RCS/Downloads/base-3.14.12.1/include/epicsExport.h \
-  /home/RCS/Downloads/base-3.14.12.1/include/shareLib.h
+  /home/RCS/Downloads/base-3.14.12.1/include/shareLib.h \
+  /home/RCS/workbench/vxworks-6.8/target/config/cpci6200/sysPldTickTmr.h

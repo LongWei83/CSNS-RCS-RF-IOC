@@ -7,6 +7,7 @@
 #include <taskLib.h>
 #include <string.h>
 #include <logLib.h>
+#include <registryFunction.h>
 #include <drv/pci/pciConfigLib.h>
 #include <arch/ppc/ivPpc.h>
 #include "drvD212.h"
@@ -17,6 +18,7 @@
 #include "epicsExport.h"
 #include <semLib.h>
 #include <dbScan.h>
+#include <sysPldTickTmr.h>
 
 
 /* D212 Register Map */
@@ -136,7 +138,6 @@ int D212Config (int cardNum, int index)
    int bus;
    int device;
    int function;
-   unsigned char intLine;
    unsigned int busAddr;
    int i;
 
@@ -223,10 +224,7 @@ int D212Config (int cardNum, int index)
    pCard->function = function;
    pCard->index = index;
 
-   /* get interrupt vector */
-   pciConfigInByte (bus, device, function,
-                    PCI_CFG_DEV_INT_LINE, &intLine);
-   pCard->intLine = intLine;
+   pCard->intLine = getIntLine(bus,device);
 
    /* create DMA0 semphore */
    pCard->semDMA0 = semBCreate(SEM_Q_PRIORITY, SEM_EMPTY);
@@ -289,11 +287,12 @@ int D212Config (int cardNum, int index)
    plx9656Init(pCard);
 
    /* start data process task */
+/*
    if( ERROR == taskSpawn("dataProcessTask", 100, VX_FP_TASK, 10000, (FUNCPTR) dataProcess, (int) pCard, 0, 0, 0, 0, 0, 0, 0, 0, 0))
    {
       printf("Fail to spawn data process task!\n");
    }
-
+*/
    /* print card configuration information */
    printf("Card %d successfully initialized:\n", pCard->cardNum);
    printf("BDF: %d %d %d\n", pCard->bus, pCard->device, pCard->function);
@@ -305,6 +304,12 @@ int D212Config (int cardNum, int index)
    printf("Buffer Address: 0x%08x\n", (unsigned int) pCard->buffer);
    printf("Float Buffer Address: 0x%08x\n", (unsigned int) pCard->floatBuffer);
    printf("Start IOC!!!\n");
+
+   if(sysTickTmrStart(0, 100000000, 0))
+   {
+       fprintf (stderr, "D212Configure: fail to start Pld timer\n");
+       return ERROR;
+   }
 
    return 0;
 }
@@ -375,6 +380,7 @@ void cpciIntISR(int intLine)
          /* FPGA interrupt */
          if(BRIDGE_REG_READ32(pCard->bridgeAddr, REG_9656_INTCSR) & PLX9656_INTCSR_LINTi_ACTIVE) 
          {
+            pCard->intTime = sysTickTmrValueGet(0);
             /* clear FPGA interrupt, i.e. de-assert LINTi line */
             int_Clear(pCard);
 
@@ -411,7 +417,8 @@ void cpciIntISR(int intLine)
             {
                dmaCount = 0;
                /* synchronize data process task */
-               semGive(pCard->semDMA0);
+               scanIoRequest(pCard->ioScanPvt);
+               pCard->dmaTime = sysTickTmrValueGet(0);
             }
          }
       }
@@ -436,7 +443,7 @@ void cpciIntISR(int intLine)
 void dataProcess(D212Card *pCard)
 {
    int i;
-   float *pDest;
+   int *pDest;
    int *pSrc;
 
    /* infinite loop, used for data process */
@@ -446,19 +453,19 @@ void dataProcess(D212Card *pCard)
       semTake(pCard->semDMA0, WAIT_FOREVER);
 
       /* process waveform 1 data */
-      pDest = pCard->floatBuffer + WF1_FADDR;
+      pDest = pCard->floatBuffer + WF1_ADDR;
       pSrc = pCard->buffer + WF1_ADDR;
       for(i=1; i<WAVEFOMR_NUM+1; i++)
       {
-           pDest[i] =  (pSrc[i]>>12) * CALC_WF1_MUL + CALC_WF1_ADD;
+           pDest[i] =  (pSrc[i]>>12);
       }
 
       /* process waveform 3 data */      
-      pDest = pCard->floatBuffer + WF3_FADDR;
+      pDest = pCard->floatBuffer + WF3_ADDR;
       pSrc = pCard->buffer + WF3_ADDR;
       for(i=1; i<WAVEFOMR_NUM+1; i++)
       {
-           pDest[i] =  pSrc[i] * CALC_WF3_MUL + CALC_WF3_ADD;
+           pDest[i] =  pSrc[i];
       }
 
       /* Inform records to retrieve the data */
@@ -524,7 +531,78 @@ void plx9656Init(D212Card *pCard)
    BRIDGE_REG_WRITE32(bridgeAddr, REG_9656_DMA1_MODE, 0x00020d43);
 }
 
-
+unsigned getIntLine(int bus, int device)
+{
+   if(bus == 11)
+   {
+      switch(device){
+         case 10:
+            return 0;
+            break;
+         case 11:
+            return 1;
+            break;
+         case 12:
+            return 2;
+            break;
+         case 13:
+            return 3;
+            break;
+         case 14:
+            return 0;
+            break;
+         case 15:
+            return 1;
+            break;
+      }
+   }
+   if(bus == 12)
+   {
+      switch(device){
+         case 11:
+            return 1;
+            break;
+         case 12:
+            return 2;
+            break;
+         case 13:
+            return 3;
+            break;
+         case 14:
+            return 0;
+            break;
+         case 15:
+            return 1;
+            break;
+         case 8:
+            return 2;
+            break;
+      }
+   }
+   if(bus == 13)
+   {
+      switch(device){
+         case 11:
+            return 2;
+            break;
+         case 12:
+            return 3;
+            break;
+         case 13:
+            return 0;
+            break;
+         case 14:
+            return 1;
+            break;
+         case 15:
+            return 2;
+            break;
+         case 8:
+            return 3;
+            break;
+      }
+   }
+}
 
 /* get card structure by card number */
 D212Card* getCardStruct (int cardNum)
@@ -590,3 +668,10 @@ float get_Work_Period (D212Card* pCard)
 {
    return (FPGA_REG_READ32(pCard->fpgaAddr, REG_Work_Period_Set) - CALC_Work_Period_Set_ADD) / CALC_Work_Period_Set_MUL;
 }
+
+unsigned int get_Int_Time (int cardNum1, int cardNum2)
+{ 
+   return (getCardStruct(cardNum2))->dmaTime - (getCardStruct(cardNum1))->dmaTime;
+}
+
+epicsRegisterFunction(get_Int_Time);

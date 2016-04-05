@@ -285,6 +285,7 @@ static struct drvet *drvsl[1] = {
 };
 
 epicsShareExtern void (*pvar_func_asSub)(void);
+epicsShareExtern void (*pvar_func_register_func_get_Int_Time)(void);
 
 epicsShareExtern int *pvar_int_asCaDebug;
 epicsShareExtern int *pvar_int_dbRecordsOnceOnly;
@@ -316,6 +317,7 @@ int rcsRfIoc_registerRecordDeviceDriver(DBBASE *pbase)
     registerDevices(pbase, 46, deviceSupportNames, devsl);
     registerDrivers(pbase, 1, driverSupportNames, drvsl);
     (*pvar_func_asSub)();
+    (*pvar_func_register_func_get_Int_Time)();
     iocshRegisterVariable(vardefs);
     return 0;
 }

@@ -16,16 +16,18 @@
 #define DMA_TRANSFER_NUM         0x00004000+8   /* 16k+8 */
 #define DMA_TRANSFER_SIZE        0x00010000+4*8   /* 64k+4*8 */
 #define DMA_WRITE_NUM            0x00000800   /* 2k */
-/******* no int ***********
 #define INTERRUPT_NUM            100
-**************************/
 #define WAVEFOMR_NUM             0x00000800   /* 2k */
 #define WAVEFORM_SIZE            0x00002004   /* 8k */
 
 #define WF1_ADDR                 0
+#define WF2_ADDR                 2049
 #define WF3_ADDR                 4098
-#define WF1_FADDR                0
-#define WF3_FADDR                4098
+#define WF4_ADDR                 6147
+#define WF5_ADDR                 8196
+#define WF6_ADDR                 10245
+#define WF7_ADDR                 12294
+#define WF8_ADDR                 14343
 
 #define OPTION_SET               0xAAAAAAAA
 #define OPTION_CLEAR             0x55555555
@@ -54,10 +56,12 @@ struct D212Card {
    unsigned int fpgaVersion;
    SEM_ID semDMA0;              /*DMA0 interrupt*/
    int *buffer;       /*store data transferred via DMA*/
-   float *floatBuffer;     /*store processed float data */
+   int *floatBuffer;     /*store processed float data */
    float *errorPhaseBuffer;
    IOSCANPVT ioScanPvt;
    int errorFlag;
+   unsigned int intTime;
+   unsigned int dmaTime;
 };
 
 struct recPrivate {
@@ -65,6 +69,7 @@ struct recPrivate {
    int function;
 };
 
+unsigned getIntLine(int bus, int device);
 void cpciIntISR(int intLine);
 void dataProcess(D212Card *pCard);
 void int_Enable (D212Card* pCard);
@@ -76,5 +81,6 @@ int SweepOption_get (D212Card* pCard);
 void set_Work_Period (D212Card* pCard, float period);
 float get_Work_Period (D212Card* pCard);
 D212Card* getCardStruct (int cardNum);
+unsigned int get_Int_Time (int cardNum1, int cardNum2);
 
 #endif  /*end of DRV_D212_h*/

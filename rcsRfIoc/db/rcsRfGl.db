@@ -1,0 +1,8 @@
+record(waveform,"rcsRfGl:xwf") {
+        field(SCAN,"1 second")
+        field(DTYP,"XWF READ")
+        field(INP,"1")
+	field(EGU,"ms")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}

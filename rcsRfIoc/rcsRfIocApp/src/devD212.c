@@ -135,19 +135,9 @@
 #define CPCI_WF_3                       2
 #define CPCI_WF_4                       3
 #define CPCI_WF_5                       4
-#define CPCI_WF_6_A                     5
-#define CPCI_WF_6_B                     6
-#define CPCI_WF_7                       7
-#define CPCI_WF_8                       8
-#define CPCI_WF_AMP_SKEW		9
-#define CPCI_WF_ERROR_ALL               10
-#define CPCI_WF_ERROR_PHASE             11
-#define CPCI_WF_ERROR_FRONT             12
-#define CPCI_WF_ERROR_TOTAL             13
-#define CPCI_WF_GRID	                14
-#define CPCI_WF_FRONT                   15
-
-#define CPCI_WF_WR_1                    0
+#define CPCI_WF_6                    	5
+#define CPCI_WF_7                       6
+#define CPCI_WF_8                       7
 
 /* check record parameter */
 #define CHECK_BIPARM(PARM,VAL)\
@@ -560,7 +550,13 @@ static long init_wf(struct waveformRecord *pwf) {
 
     do {
         CHECK_WFPARM("WF_1", CPCI_WF_1);
+	CHECK_WFPARM("WF_2", CPCI_WF_2);
         CHECK_WFPARM("WF_3", CPCI_WF_3);
+        CHECK_WFPARM("WF_4", CPCI_WF_4);
+	CHECK_WFPARM("WF_5", CPCI_WF_5);
+        CHECK_WFPARM("WF_6", CPCI_WF_6);
+        CHECK_WFPARM("WF_7", CPCI_WF_7);
+	CHECK_WFPARM("WF_8", CPCI_WF_8);
     } while(0);
 
     if (!parmOK) {
@@ -581,16 +577,40 @@ static long init_wf(struct waveformRecord *pwf) {
 
 static long read_wf(struct waveformRecord *pwf) {
     int numRead = pwf->nelm;
-    float *pSrc;
-    float *pDest = pwf->bptr;
+    int *pSrc;
+    int *pDest = pwf->bptr;
     switch (((recPrivate*)pwf->dpvt)->function) {
        case CPCI_WF_1:
-          pSrc = ((recPrivate*)pwf->dpvt)->pCard->floatBuffer + WF1_FADDR + 1;
-          memcpy(pDest, pSrc, numRead*sizeof(float));
+          pSrc = ((recPrivate*)pwf->dpvt)->pCard->buffer + WF1_ADDR  + 1;
+          memcpy(pDest, pSrc, numRead*sizeof(int));
+          break;
+       case CPCI_WF_2:
+          pSrc = ((recPrivate*)pwf->dpvt)->pCard->buffer + WF2_ADDR  + 1;
+          memcpy(pDest, pSrc, numRead*sizeof(int));
           break;
        case CPCI_WF_3:
-          pSrc = ((recPrivate*)pwf->dpvt)->pCard->floatBuffer + WF3_FADDR + 1;
-          memcpy(pDest, pSrc, numRead*sizeof(float));
+          pSrc = ((recPrivate*)pwf->dpvt)->pCard->buffer + WF3_ADDR  + 1;
+          memcpy(pDest, pSrc, numRead*sizeof(int));
+          break;
+       case CPCI_WF_4:
+          pSrc = ((recPrivate*)pwf->dpvt)->pCard->buffer + WF4_ADDR  + 1;
+          memcpy(pDest, pSrc, numRead*sizeof(int));
+          break;
+       case CPCI_WF_5:
+          pSrc = ((recPrivate*)pwf->dpvt)->pCard->buffer + WF5_ADDR  + 1;
+          memcpy(pDest, pSrc, numRead*sizeof(int));
+          break;
+       case CPCI_WF_6:
+          pSrc = ((recPrivate*)pwf->dpvt)->pCard->buffer + WF6_ADDR  + 1;
+          memcpy(pDest, pSrc, numRead*sizeof(int));
+          break;
+       case CPCI_WF_7:
+          pSrc = ((recPrivate*)pwf->dpvt)->pCard->buffer + WF7_ADDR  + 1;
+          memcpy(pDest, pSrc, numRead*sizeof(int));
+          break;
+       case CPCI_WF_8:
+          pSrc = ((recPrivate*)pwf->dpvt)->pCard->buffer + WF8_ADDR  + 1;
+          memcpy(pDest, pSrc, numRead*sizeof(int));
           break;
        default:
            recGblRecordError(S_db_badField,(void *)pwf,
