@@ -1,0 +1,8 @@
+startup = "/home/long/Epics/apps/rcsRfIoc_v2/iocBoot/iocrcsRfIoc"
+putenv("IOC=iocrcsRfIoc")
+top = "/home/long/Epics/apps/rcsRfIoc_v2"
+putenv("TOP=/home/long/Epics/apps/rcsRfIoc_v2")
+topbin = "/home/long/Epics/apps/rcsRfIoc_v2/bin/vxWorks-mpc8572"
+epics_base = "/home/long/Epics/base-3.15.4"
+putenv("EPICS_BASE=/home/long/Epics/base-3.15.4")
+epics_basebin = "/home/long/Epics/base-3.15.4/bin/vxWorks-mpc8572"

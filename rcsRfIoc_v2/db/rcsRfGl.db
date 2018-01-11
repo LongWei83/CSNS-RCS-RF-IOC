@@ -1,0 +1,379 @@
+record(waveform,"rcsRfGl:xwf") {
+        field(SCAN,"10 second")
+        field(DTYP,"XWF READ")
+        field(INP,"1")
+	field(EGU,"ms")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"rcsRfGl:wf_wr_fre") {
+        field(DTYP,"WrWf WRITE 1")
+        field(INP,"rcsRfGl:Cav_FreCurve_set")
+        field(NELM,"8192")
+        field(FTVL,"ULONG")
+}
+
+record(waveform,"rcsRfGl:wf_wr_amp") {
+        field(DTYP,"WrWf WRITE 2")
+        field(INP,"rcsRfGl:Cav_AmpCurve_set")
+        field(NELM,"16640")
+        field(FTVL,"ULONG")
+}
+
+record(ai, "rcsRfGl:wrDmaBtnFre")
+{
+	field(FLNK, "rcsRfGl:wf_wr_fre")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:wrDmaBtnAmp")
+{
+	field(FLNK, "rcsRfGl:wf_wr_amp")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+
+record(ai, "rcsRfGl:rd_rcsRf1_fre")
+{
+	field(FLNK, "rcsRf1:wr_rd_fre")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf1_amp")
+{
+	field(FLNK, "rcsRf1:wr_rd_amp")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf2_fre")
+{
+	field(FLNK, "rcsRf2:wr_rd_fre")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf2_amp")
+{
+	field(FLNK, "rcsRf2:wr_rd_amp")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf3_fre")
+{
+	field(FLNK, "rcsRf3:wr_rd_fre")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf3_amp")
+{
+	field(FLNK, "rcsRf3:wr_rd_amp")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf4_fre")
+{
+	field(FLNK, "rcsRf4:wr_rd_fre")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf4_amp")
+{
+	field(FLNK, "rcsRf4:wr_rd_amp")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf5_fre")
+{
+	field(FLNK, "rcsRf5:wr_rd_fre")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf5_amp")
+{
+	field(FLNK, "rcsRf5:wr_rd_amp")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf6_fre")
+{
+	field(FLNK, "rcsRf6:wr_rd_fre")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf6_amp")
+{
+	field(FLNK, "rcsRf6:wr_rd_amp")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf7_fre")
+{
+	field(FLNK, "rcsRf7:wr_rd_fre")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf7_amp")
+{
+	field(FLNK, "rcsRf7:wr_rd_amp")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf8_fre")
+{
+	field(FLNK, "rcsRf8:wr_rd_fre")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf8_amp")
+{
+	field(FLNK, "rcsRf8:wr_rd_amp")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf9_fre")
+{
+	field(FLNK, "rcsRf9:wr_rd_fre")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(ai, "rcsRfGl:rd_rcsRf9_amp")
+{
+	field(FLNK, "rcsRf9:wr_rd_amp")
+	field(EGUF, "10")
+	field(EGU, "Counts")
+	field(HOPR, "10")
+	field(LOPR, "0")
+	field(HIHI, "8")
+	field(HIGH, "6")
+	field(LOW, "4")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+	field(HSV, "MINOR")
+	field(LSV, "MINOR")
+	field(LLSV, "MAJOR")
+}
+
+record(waveform,"rcsRfGl:Cav_FreCurve_set") {
+        field(SCAN,"1 second")
+        field(INP,"ACC_RCS_RRF:LLRF::FreCurveSet:waveform")
+        field(DTYP,"Soft Channel")
+        field(NELM,"8192")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"rcsRfGl:Cav_AmpCurve_set") {
+        field(SCAN,"1 second")
+        field(INP,"ACC_RCS_RRF:LLRF::AmpCurveSet:waveform")
+        field(DTYP,"Soft Channel")
+        field(NELM,"16640")
+        field(FTVL,"FLOAT")
+}

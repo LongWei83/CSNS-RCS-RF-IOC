@@ -1,0 +1,18 @@
+record(waveform,"rcsRfGl:xwf") {
+        field(SCAN,"1 second")
+        field(DTYP,"XWF READ")
+        field(INP,"1")
+	field(EGU,"ms")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+record(ai,"rcsRfGl:dmaTime_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "Timer")
+        field(INP, "1.0")
+        field(SCAN,"Event")
+	field(EVNT,"0")
+	field(EGU,"us")
+}

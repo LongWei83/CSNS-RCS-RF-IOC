@@ -1,0 +1,943 @@
+record(bi,"rcsRf2:intEnable_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @INT_ENABLE")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:sweepOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @SWEEP_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:pointSweep_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @POINT_SWEEP")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+record(bi,"rcsRf2:rfReset_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @RF_RESET")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:ampOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @AMP_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+record(bi,"rcsRf2:ampFFOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @AMP_FF_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+record(bi,"rcsRf2:ampModifyOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @AMP_MODIFY_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+record(bi,"rcsRf2:tuneOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @TUNE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+record(bi,"rcsRf2:frontTuneOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @FRONT_TUNE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+record(bi,"rcsRf2:tuneFFOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @TUNE_FF_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+record(bi,"rcsRf2:tuneModifyOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @TUNE_MODIFY_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:phaseOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @PHASE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:alarm0_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @ALARM0")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:alarm1_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @ALARM1")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:alarm2_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @ALARM2")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:alarm3_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @ALARM3")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:alarm4_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @ALARM4")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:alarm5_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @ALARM5")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:alarm6_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @ALARM6")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:alarm7_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @ALARM7")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:alarm8_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @ALARM8")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:phaseFFOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @PHASE_FF_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:phaseModifyOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @PHASE_MODIFY_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+
+record(bi,"rcsRf2:freChangeOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @FRE_CHANGE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:ampChangeOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @AMP_CHANGE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:drvReset_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @DRV_RESET")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bi,"rcsRf2:sgMode_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @SG_MODE")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+
+record(bi,"rcsRf2:beam_int_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C2 S @BEAM_INT")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"1 second")
+}
+
+record(bo,"rcsRf2:beam_int_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @BEAM_INT")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"rcsRf2:intEnable_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @INT_ENABLE")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"rcsRf2:sweepOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @SWEEP_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"rcsRf2:pointSweep_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @POINT_SWEEP")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"rcsRf2:rfReset_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @RF_RESET")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"rcsRf2:ampOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @AMP_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"rcsRf2:ampFFOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @AMP_FF_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"rcsRf2:ampModifyOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @AMP_MODIFY_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"rcsRf2:tuneOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @TUNE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"rcsRf2:frontTuneOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @FRONT_TUNE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"rcsRf2:tuneFFOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @TUNE_FF_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"rcsRf2:tuneModifyOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @TUNE_MODIFY_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"rcsRf2:phaseOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @PHASE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+record(bo,"rcsRf2:errorOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @ERROR_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"rcsRf2:phaseFFOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @PHASE_FF_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"rcsRf2:phaseModifyOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @PHASE_MODIFY_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"rcsRf2:freChangeOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @FRE_CHANGE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"rcsRf2:ampChangeOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @AMP_CHANGE_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+
+record(bo,"rcsRf2:drvReset_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @DRV_RESET")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"rcsRf2:sgMode_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C2 S @SG_MODE")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(ai,"rcsRf2:workPeriod_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @WORK_PERIOD")
+        field(SCAN,"1 second")
+	field(EGU,"ms")
+}
+
+
+record(ai,"rcsRf2:arc_count_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @ARC_COUNT")
+        field(SCAN,"1 second")
+}
+
+record(ai,"rcsRf2:fixFrequency_get")
+{
+        field(DESC, "")
+        field(PREC, "6")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @FIX_FREQUENCY")
+        field(SCAN,"1 second")
+	field(EGU,"MHz")
+}
+
+record(ai,"rcsRf2:amp_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @AMP_SET")
+        field(SCAN,"1 second")
+}
+record(ai,"rcsRf2:ampCoefficient_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @AMP_COEFFICIENT")
+        field(SCAN,"1 second")
+	field(EGU,"kV")
+}
+record(ai,"rcsRf2:ampPSet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @AMP_P_SET")
+        field(SCAN,"1 second")
+}
+record(ai,"rcsRf2:ampISet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @AMP_I_SET")
+        field(SCAN,"1 second")
+}
+record(ai,"rcsRf2:biasSet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @BIAS_SET")
+        field(SCAN,"1 second")
+}
+record(ai,"rcsRf2:fixTuningAngle_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @FIX_TUNING_ANGLE")
+        field(SCAN,"1 second")
+}
+record(ai,"rcsRf2:tuningAngleOffset_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @TUNING_ANGLE_OFFSET")
+        field(SCAN,"1 second")
+}
+record(ai,"rcsRf2:tunePSet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @TUNE_P_SET")
+        field(SCAN,"1 second")
+}
+record(ai,"rcsRf2:tuneISet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @TUNE_I_SET")
+        field(SCAN,"1 second")
+}
+record(ai,"rcsRf2:tuneISet1_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @TUNE_I1_SET")
+        field(SCAN,"1 second")
+}
+record(ai,"rcsRf2:tuneISet2_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @TUNE_I2_SET")
+        field(SCAN,"1 second")
+}
+record(ai,"rcsRf2:tuneISet3_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @TUNE_I3_SET")
+        field(SCAN,"1 second")
+}
+record(ai,"rcsRf2:frontBiasSet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @FRONT_BIAS_SET")
+        field(SCAN,"1 second")
+}
+record(ai,"rcsRf2:frontTunePSet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @FRONT_TUNE_P_SET")
+        field(SCAN,"1 second")
+}
+record(ai,"rcsRf2:frontTuneISet_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @FRONT_TUNE_I_SET")
+        field(SCAN,"1 second")
+}
+
+record(ai,"rcsRf2:frontFixTuningAngle_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @FRONT_FIX_TUNING_ANGLE")
+        field(SCAN,"1 second")
+}
+
+record(ai,"rcsRf2:phase_i_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @PHASE_I")
+        field(SCAN,"1 second")
+}
+
+record(ai,"rcsRf2:phase_p_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C2 S @PHASE_P")
+        field(SCAN,"1 second")
+}
+
+record(ai,"rcsRf2:initial_phase_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+	field(INP, "#C2 S @INITIAL_PHASE")
+        field(SCAN,"1 second")
+}
+
+record(ai,"rcsRf2:FF_Delay_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+	field(INP, "#C2 S @FF_DELAY")
+        field(SCAN,"1 second")
+}
+
+record(ai,"rcsRf2:PreTrig_Delay_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+	field(INP, "#C2 S @PRETRIG_DELAY")
+        field(SCAN,"1 second")
+}
+
+record(ai,"rcsRf2:Initial_Ref_Phase_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+	field(INP, "#C2 S @INITIAL_REF_PHASE")
+        field(SCAN,"1 second")
+}
+
+record(ai,"rcsRf2:Int_Delay_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+	field(INP, "#C2 S @INT_DELAY")
+        field(SCAN,"1 second")
+}
+
+
+record(ai,"rcsRf2:RBF_Delay_get")
+{
+        field(DESC, "")
+        field(PREC, "7")
+        field(DTYP, "D212")
+	field(INP, "#C2 S @RBF_DELAY")
+        field(SCAN,"1 second")
+}
+
+record(ao,"rcsRf2:RBF_Delay_set")
+{
+        field(DESC, "")
+        field(PREC, "7")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @RBF_DELAY")
+}
+
+
+record(ao,"rcsRf2:workPeriod_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @WORK_PERIOD")
+}
+
+
+record(ao,"rcsRf2:fixFrequency_set")
+{
+        field(DESC, "")
+        field(PREC, "6")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @FIX_FREQUENCY")
+}
+
+record(ao,"rcsRf2:amp_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @AMP_SET")
+}
+record(ao,"rcsRf2:ampCoefficient_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @AMP_COEFFICIENT")
+}
+record(ao,"rcsRf2:ampPSet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @AMP_P_SET")
+}
+record(ao,"rcsRf2:ampISet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @AMP_I_SET")
+}
+record(ao,"rcsRf2:biasSet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @BIAS_SET")
+}
+record(ao,"rcsRf2:fixTuningAngle_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @FIX_TUNING_ANGLE")
+}
+record(ao,"rcsRf2:tuningAngleOffset_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @TUNING_ANGLE_OFFSET")
+}
+record(ao,"rcsRf2:tunePSet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @TUNE_P_SET")
+}
+record(ao,"rcsRf2:tuneISet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @TUNE_I_SET")
+}
+record(ao,"rcsRf2:tuneISet1_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @TUNE_I1")
+}
+record(ao,"rcsRf2:tuneISet2_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @TUNE_I2")
+}
+record(ao,"rcsRf2:tuneISet3_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @TUNE_I3")
+}
+record(ao,"rcsRf2:frontBiasSet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @FRONT_BIAS_SET")
+}
+record(ao,"rcsRf2:frontTunePSet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @FRONT_TUNE_P_SET")
+}
+record(ao,"rcsRf2:frontTuneISet_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @FRONT_TUNE_I_SET")
+}
+record(ao,"rcsRf2:frontFixTuningAngle_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @FRONT_FIX_TUNING_ANGLE")
+}
+record(ao,"rcsRf2:phase_i_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @PHASE_I")
+}
+
+record(ao,"rcsRf2:phase_p_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @PHASE_P")
+}
+
+record(ao,"rcsRf2:initial_Phase_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @INITIAL_PHASE")
+}
+
+record(ao,"rcsRf2:FF_Delay_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @FF_DELAY")
+}
+
+record(ao,"rcsRf2:PreTrig_Delay_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @PRETRIG_DELAY")
+}
+
+record(ao,"rcsRf2:Initial_Ref_Phase_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @INITIAL_REF_PHASE")
+}
+
+record(ao,"rcsRf2:Int_Delay_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C2 S @INT_DELAY")
+}
+
+record(waveform,"rcsRf2:wf_1") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_1")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+record(waveform,"rcsRf2:wf_2") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_2")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+record(waveform,"rcsRf2:wf_3") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_3")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+record(waveform,"rcsRf2:wf_4a") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_4_A")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+record(waveform,"rcsRf2:wf_4b") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_4_B")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+record(waveform,"rcsRf2:wf_5a") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_5_A")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+record(waveform,"rcsRf2:wf_5b") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_5_B")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+record(waveform,"rcsRf2:wf_6a") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_6_A")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+record(waveform,"rcsRf2:wf_6b") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_6_B")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+record(waveform,"rcsRf2:wf_7") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_7")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+record(waveform,"rcsRf2:wf_8") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_8")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+record(waveform,"rcsRf2:wf_amp_skew") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_AMP_SKEW")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"rcsRf2:wf_grid") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_GRID")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+record(waveform,"rcsRf2:wf_front") {
+        field(SCAN,"I/O Intr")
+        field(DTYP,"D212 READ")
+        field(INP,"#C2 S @WF_FRONT")
+        field(NELM,"2048")
+        field(FTVL,"FLOAT")
+}
+
+
+record(waveform,"rcsRf2:wr_rd_fre") {
+        field(DTYP,"WR READ")
+        field(INP,"#C2 S @WR_RD1")
+        field(NELM,"8192")
+        field(FTVL,"ULONG")
+}
+
+record(waveform,"rcsRf2:wr_rd_amp") {
+        field(DTYP,"WR READ")
+        field(INP,"#C2 S @WR_RD2")
+        field(NELM,"16640")
+        field(FTVL,"ULONG")
+}

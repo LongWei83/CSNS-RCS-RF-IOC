@@ -1,0 +1,51 @@
+record(bi,"$(IOC):intEnable_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @INT_ENABLE")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bi,"$(IOC):sweepOption_get") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(INP,"#C$(Card) S @SWEEP_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+        field(SCAN,"$(Scan)")
+}
+
+record(bo,"$(IOC):intEnable_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @INT_ENABLE")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(bo,"$(IOC):sweepOption_set") {
+        field(DESC, "")
+        field(DTYP,"D212")
+        field(OUT,"#C$(Card) S @SWEEP_OPTION")
+        field(ZNAM,"0")
+        field(ONAM,"1")
+}
+
+record(ai,"$(IOC):workPeriod_get")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(INP, "#C$(Card) S @WORK_PERIOD")
+        field(SCAN,"$(Scan)")
+	field(EGU,"ms")
+}
+
+record(ao,"$(IOC):workPeriod_set")
+{
+        field(DESC, "")
+        field(PREC, "4")
+        field(DTYP, "D212")
+        field(OUT, "#C$(Card) S @WORK_PERIOD")
+}

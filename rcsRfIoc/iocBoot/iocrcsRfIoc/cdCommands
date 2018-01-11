@@ -1,9 +1,0 @@
-startup = "/home/RCS/EpicsBak/rcsRfIoc/iocBoot/iocrcsRfIoc"
-putenv("ARCH=vxWorks-mpc8572")
-putenv("IOC=iocrcsRfIoc")
-top = "/home/RCS/EpicsBak/rcsRfIoc"
-putenv("TOP=/home/RCS/EpicsBak/rcsRfIoc")
-topbin = "/home/RCS/EpicsBak/rcsRfIoc/bin/vxWorks-mpc8572"
-epics_base = "/home/RCS/Downloads/base-3.14.12.1"
-putenv("EPICS_BASE=/home/RCS/Downloads/base-3.14.12.1")
-epics_basebin = "/home/RCS/Downloads/base-3.14.12.1/bin/vxWorks-mpc8572"

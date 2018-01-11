@@ -1,0 +1,35 @@
+## Example vxWorks startup file
+
+## The following is needed if your board support package doesn't at boot time
+## automatically cd to the directory containing its startup script
+cd "/home/RCS/EpicsBak/rcsRfIoc"
+
+ld <bin/vxWorks-mpc8572/rcsRfIoc.munch
+
+epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES","1640800")
+
+dbLoadDatabase "dbd/rcsRfIoc.dbd"
+rcsRfIoc_registerRecordDeviceDriver pdbbase
+
+## Load record instances
+dbLoadRecords "db/rcsRfGl.db"
+dbLoadRecords "db/rcsRf1.db"
+dbLoadRecords "db/rcsRf2.db"
+dbLoadRecords "db/rcsRf3.db"
+dbLoadRecords "db/rcsRf4.db"
+dbLoadRecords "db/rcsRf5.db"
+dbLoadRecords "db/rcsRf6.db"
+dbLoadRecords "db/rcsRf7.db"
+dbLoadRecords "db/rcsRf8.db"
+
+#D212Config(cardNum,index)
+D212Config(0,0)
+D212Config(1,1)
+D212Config(2,2)
+D212Config(3,3)
+D212Config(4,4)
+D212Config(5,5)
+D212Config(6,6)
+D212Config(7,7)
+
+iocInit

@@ -1,8 +1,0 @@
-device(bi, VME_IO, devBiCPCI9110, "CPCI9110")
-device(bo, VME_IO, devBoCPCI9110, "CPCI9110")
-device(ai, VME_IO, devAiCPCI9110, "CPCI9110")
-device(ao, VME_IO, devAoCPCI9110, "CPCI9110")
-device(waveform, VME_IO, devWfCPCI9110, "CPCI9110 READ")
-device(waveform, VME_IO, devWfWrCPCI9110, "CPCI9110 WRITE")
-device(waveform, CONSTANT, devXWf, "XWF READ")
-driver(drvCPCI9110)
