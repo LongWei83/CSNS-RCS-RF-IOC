@@ -1544,8 +1544,15 @@ float get_Work_Period (D212Card* pCard)
 
 void set_Fix_Frequency (D212Card* pCard, float frequency)
 {
+   float fvalue;
    unsigned int value;
-   value = (unsigned int)(frequency * CALC_Fix_Frequency_Set_MUL + CALC_Fix_Frequency_Set_ADD);
+   if(frequency>1.3)
+	fvalue = 1.3;
+   else if(frequency<0)
+	fvalue = 0;
+   else
+	fvalue = frequency;
+   value = (unsigned int)(fvalue * CALC_Fix_Frequency_Set_MUL + CALC_Fix_Frequency_Set_ADD);
    FPGA_REG_WRITE32(pCard->fpgaAddr, REG_Fix_Frequency_Set, value);
 }
 
