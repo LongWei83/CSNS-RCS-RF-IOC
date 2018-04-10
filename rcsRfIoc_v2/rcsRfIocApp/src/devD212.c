@@ -680,6 +680,7 @@ static long init_bo(struct boRecord *pbo) {
 static long write_bo(struct boRecord *pbo) {
 
     switch (((recPrivate*)pbo->dpvt)->function) {
+       int i = 0;
        case CPCI_BO_INT_ENABLE:
            if(pbo->val == 0)
                int_Disable(((recPrivate*)pbo->dpvt)->pCard);
@@ -801,10 +802,19 @@ static long write_bo(struct boRecord *pbo) {
                set_beam_Int(((recPrivate*)pbo->dpvt)->pCard);
            break;
        case CPCI_BO_CURVE_CHANGE_OPTION:
-           if(pbo->val == 0)
+           if(pbo->val == 0){
                clear_curve_Change();
+	       for(i=0;i<9;i++){
+	           int_Enable(getCardStruct(i));
+	       }
+           }
            else
+           {
                set_curve_Change();
+	       for(i=0;i<9;i++){
+	           int_Enable(getCardStruct(i));
+	       }
+           }
            break;
        default:
            recGblRecordError(S_db_badField,(void *)pbo,

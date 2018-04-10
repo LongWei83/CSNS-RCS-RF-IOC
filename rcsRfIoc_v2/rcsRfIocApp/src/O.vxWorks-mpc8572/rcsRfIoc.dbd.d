@@ -50,7 +50,8 @@
     /home/long/Epics/base-3.15.4/dbd/devSoft.dbd \
     /home/long/Epics/base-3.15.4/dbd/asSub.dbd \
     /home/long/Epics/base-3.15.4/dbd/dbCore.dbd \
-    ../devD212.dbd
+    ../devD212.dbd \
+    ../dbSubExample.dbd
 
 /home/long/Epics/base-3.15.4/dbd/base.dbd:
 /home/long/Epics/base-3.15.4/dbd/menuGlobal.dbd:
@@ -105,4 +106,5 @@
 /home/long/Epics/base-3.15.4/dbd/asSub.dbd:
 /home/long/Epics/base-3.15.4/dbd/dbCore.dbd:
 ../devD212.dbd:
+../dbSubExample.dbd:
 ../O.Common/rcsRfIoc.dbd: ../Makefile

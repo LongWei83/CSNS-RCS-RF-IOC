@@ -187,7 +187,10 @@ static struct drvet *drvsl[] = {
 typedef void (*reg_func)(void);
 epicsShareExtern reg_func pvar_func_arrInitialize, pvar_func_asSub,
     pvar_func_dbndInitialize, pvar_func_syncInitialize,
-    pvar_func_tsInitialize;
+    pvar_func_tsInitialize, pvar_func_register_func_myAsubInit,
+    pvar_func_register_func_myAsubProcess,
+    pvar_func_register_func_mySubInit,
+    pvar_func_register_func_mySubProcess, pvar_func_register_func_offSet;
 
 epicsShareExtern int * const pvar_int_asCaDebug;
 epicsShareExtern int * const pvar_int_atExitDebug;
@@ -202,6 +205,7 @@ epicsShareExtern int * const pvar_int_dbRecordsOnceOnly;
 epicsShareExtern int * const pvar_int_dbTemplateMaxVars;
 epicsShareExtern int * const pvar_int_dbThreadRealtimeLock;
 epicsShareExtern int * const pvar_int_histogramSDELprecision;
+epicsShareExtern int * const pvar_int_mySubDebug;
 epicsShareExtern double * const pvar_double_seqDLYlimit;
 epicsShareExtern int * const pvar_int_seqDLYprecision;
 
@@ -219,6 +223,7 @@ static struct iocshVarDef vardefs[] = {
     {"dbTemplateMaxVars", iocshArgInt, pvar_int_dbTemplateMaxVars},
     {"dbThreadRealtimeLock", iocshArgInt, pvar_int_dbThreadRealtimeLock},
     {"histogramSDELprecision", iocshArgInt, pvar_int_histogramSDELprecision},
+    {"mySubDebug", iocshArgInt, pvar_int_mySubDebug},
     {"seqDLYlimit", iocshArgDouble, pvar_double_seqDLYlimit},
     {"seqDLYprecision", iocshArgInt, pvar_int_seqDLYprecision},
     {NULL, iocshArgInt, NULL}
@@ -254,6 +259,11 @@ int rcsRfIoc_registerRecordDeviceDriver(DBBASE *pbase)
     pvar_func_dbndInitialize();
     pvar_func_syncInitialize();
     pvar_func_tsInitialize();
+    pvar_func_register_func_myAsubInit();
+    pvar_func_register_func_myAsubProcess();
+    pvar_func_register_func_mySubInit();
+    pvar_func_register_func_mySubProcess();
+    pvar_func_register_func_offSet();
     iocshRegisterVariable(vardefs);
     return 0;
 }

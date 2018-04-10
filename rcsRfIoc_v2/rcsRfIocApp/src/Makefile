@@ -22,6 +22,7 @@ DBD += devD212.dbd
 # Compile and add the code to the support library
 rcsRfIocSupport_SRCS += devD212.c
 rcsRfIocSupport_SRCS += drvD212.c
+rcsRfIocSupport_SRCS += dbSubExample.c
 
 # Link locally-provided code into the support library,
 # rather than directly into the IOC application.
@@ -38,6 +39,7 @@ DBD += rcsRfIoc.dbd
 # rcsRfIoc.dbd will be made up from these files:
 rcsRfIoc_DBD += base.dbd
 rcsRfIoc_DBD += devD212.dbd
+rcsRfIoc_DBD += dbSubExample.dbd
 
 # rcsRfIoc_registerRecordDeviceDriver.cpp derives from rcsRfIoc.dbd
 rcsRfIoc_SRCS += rcsRfIoc_registerRecordDeviceDriver.cpp

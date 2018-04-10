@@ -957,6 +957,7 @@ record(waveform,"rcsRf9:wf_2") {
         field(FTVL,"FLOAT")
 }
 record(waveform,"rcsRf9:wf_3") {
+        field(FLNK, "rcsRf9:bpm1")
         field(SCAN,"I/O Intr")
         field(DTYP,"D212 READ")
         field(INP,"#C8 S @WF_3")
@@ -978,6 +979,7 @@ record(waveform,"rcsRf9:wf_4b") {
         field(FTVL,"FLOAT")
 }
 record(waveform,"rcsRf9:wf_5a") {
+        field(FLNK, "rcsRf9:bpm2")
         field(SCAN,"I/O Intr")
         field(DTYP,"D212 READ")
         field(INP,"#C8 S @WF_5_A")

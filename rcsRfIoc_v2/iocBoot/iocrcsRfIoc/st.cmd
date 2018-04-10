@@ -22,6 +22,7 @@ dbLoadRecords "db/rcsRf6.db"
 dbLoadRecords "db/rcsRf7.db"
 dbLoadRecords "db/rcsRf8.db"
 dbLoadRecords "db/rcsRf9.db"
+dbLoadRecords "db/calcPV.db"
 
 #D212Config(cardNum,index)
 D212Config(0,0)
@@ -55,15 +56,6 @@ dbpf "rcsRf6:workPeriod_set","40"
 dbpf "rcsRf7:workPeriod_set","40"
 dbpf "rcsRf8:workPeriod_set","40"
 dbpf "rcsRf9:workPeriod_set","40"
-
-dbpf "rcsRf1:Initial_Ref_Phase_set","0"
-dbpf "rcsRf2:Initial_Ref_Phase_set","112"
-dbpf "rcsRf3:Initial_Ref_Phase_set","75"
-dbpf "rcsRf4:Initial_Ref_Phase_set","108"
-dbpf "rcsRf5:Initial_Ref_Phase_set","112"
-dbpf "rcsRf6:Initial_Ref_Phase_set","104"
-dbpf "rcsRf7:Initial_Ref_Phase_set","156"
-dbpf "rcsRf8:Initial_Ref_Phase_set","288"
 
 
 
