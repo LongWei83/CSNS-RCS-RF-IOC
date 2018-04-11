@@ -904,6 +904,7 @@ record(waveform,"rcsRf2:wf_8") {
         field(FTVL,"FLOAT")
 }
 record(waveform,"rcsRf2:wf_amp_skew") {
+        field(FLNK, "rcsRf2:ampErrMax")
         field(SCAN,"I/O Intr")
         field(DTYP,"D212 READ")
         field(INP,"#C2 S @WF_AMP_SKEW")

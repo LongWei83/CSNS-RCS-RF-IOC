@@ -1,0 +1,169 @@
+record(aSub,"rcsRf9:bpm1") {
+	field(SNAM,"offSet")
+	field(SCAN,"Passive")
+	field(FTA, "DOUBLE")
+	field(INPA, "rcsRf9:wf_3 PP NMS")
+	field(INPB, "rcsRf9:bpmOffSet1 NPP NMS")
+	field(FTB, "DOUBLE")
+	field(NOA, "2048")
+	field(NOB, "1")
+	field(NOVA, "2048")
+	field(FTVA, "DOUBLE")
+}
+
+record(ai, "rcsRf9:bpmOffSet1")
+{
+}
+
+record(aSub,"rcsRf9:bpm2") {
+	field(SNAM,"offSet")
+	field(SCAN,"Passive")
+	field(FTA, "DOUBLE")
+	field(INPA, "rcsRf9:wf_5a PP NMS")
+	field(INPB, "rcsRf9:bpmOffSet2 NPP NMS")
+	field(FTB, "DOUBLE")
+	field(NOA, "2048")
+	field(NOB, "1")
+	field(NOVA, "2048")
+	field(FTVA, "DOUBLE")
+}
+
+record(ai, "rcsRf9:bpmOffSet2")
+{
+}
+
+record(aSub,"rcsRf1:ampErrMax") {
+	field(SNAM,"maxHold")
+	field(SCAN,"Passive")
+	field(FTA, "DOUBLE")
+	field(INPA, "rcsRf1:wf_amp_skew PP NMS")
+	field(INPB, "rcsRf1:ampErrMaxClr")
+	field(FTB, "DOUBLE")
+	field(NOA, "2048")
+	field(NOB, "1")
+	field(NOVA, "2048")
+	field(FTVA, "DOUBLE")
+}
+
+record(ai, "rcsRf1:ampErrMaxClr")
+{
+}
+
+record(aSub,"rcsRf2:ampErrMax") {
+	field(SNAM,"maxHold")
+	field(SCAN,"Passive")
+	field(FTA, "DOUBLE")
+	field(INPA, "rcsRf2:wf_amp_skew PP NMS")
+	field(INPB, "rcsRf2:ampErrMaxClr")
+	field(FTB, "DOUBLE")
+	field(NOA, "2048")
+	field(NOB, "1")
+	field(NOVA, "2048")
+	field(FTVA, "DOUBLE")
+}
+
+record(ai, "rcsRf2:ampErrMaxClr")
+{
+}
+
+record(aSub,"rcsRf3:ampErrMax") {
+	field(SNAM,"maxHold")
+	field(SCAN,"Passive")
+	field(FTA, "DOUBLE")
+	field(INPA, "rcsRf3:wf_amp_skew PP NMS")
+	field(INPB, "rcsRf3:ampErrMaxClr")
+	field(FTB, "DOUBLE")
+	field(NOA, "2048")
+	field(NOB, "1")
+	field(NOVA, "2048")
+	field(FTVA, "DOUBLE")
+}
+
+record(ai, "rcsRf3:ampErrMaxClr")
+{
+}
+
+record(aSub,"rcsRf4:ampErrMax") {
+	field(SNAM,"maxHold")
+	field(SCAN,"Passive")
+	field(FTA, "DOUBLE")
+	field(INPA, "rcsRf4:wf_amp_skew PP NMS")
+	field(INPB, "rcsRf4:ampErrMaxClr")
+	field(FTB, "DOUBLE")
+	field(NOA, "2048")
+	field(NOB, "1")
+	field(NOVA, "2048")
+	field(FTVA, "DOUBLE")
+}
+
+record(ai, "rcsRf4:ampErrMaxClr")
+{
+}
+
+record(aSub,"rcsRf5:ampErrMax") {
+	field(SNAM,"maxHold")
+	field(SCAN,"Passive")
+	field(FTA, "DOUBLE")
+	field(INPA, "rcsRf5:wf_amp_skew PP NMS")
+	field(INPB, "rcsRf5:ampErrMaxClr")
+	field(FTB, "DOUBLE")
+	field(NOA, "2048")
+	field(NOB, "1")
+	field(NOVA, "2048")
+	field(FTVA, "DOUBLE")
+}
+
+record(ai, "rcsRf5:ampErrMaxClr")
+{
+}
+
+record(aSub,"rcsRf6:ampErrMax") {
+	field(SNAM,"maxHold")
+	field(SCAN,"Passive")
+	field(FTA, "DOUBLE")
+	field(INPA, "rcsRf6:wf_amp_skew PP NMS")
+	field(INPB, "rcsRf6:ampErrMaxClr")
+	field(FTB, "DOUBLE")
+	field(NOA, "2048")
+	field(NOB, "1")
+	field(NOVA, "2048")
+	field(FTVA, "DOUBLE")
+}
+
+record(ai, "rcsRf6:ampErrMaxClr")
+{
+}
+
+record(aSub,"rcsRf7:ampErrMax") {
+	field(SNAM,"maxHold")
+	field(SCAN,"Passive")
+	field(FTA, "DOUBLE")
+	field(INPA, "rcsRf7:wf_amp_skew PP NMS")
+	field(INPB, "rcsRf7:ampErrMaxClr")
+	field(FTB, "DOUBLE")
+	field(NOA, "2048")
+	field(NOB, "1")
+	field(NOVA, "2048")
+	field(FTVA, "DOUBLE")
+}
+
+record(ai, "rcsRf7:ampErrMaxClr")
+{
+}
+
+record(aSub,"rcsRf8:ampErrMax") {
+	field(SNAM,"maxHold")
+	field(SCAN,"Passive")
+	field(FTA, "DOUBLE")
+	field(INPA, "rcsRf8:wf_amp_skew PP NMS")
+	field(INPB, "rcsRf8:ampErrMaxClr")
+	field(FTB, "DOUBLE")
+	field(NOA, "2048")
+	field(NOB, "1")
+	field(NOVA, "2048")
+	field(FTVA, "DOUBLE")
+}
+
+record(ai, "rcsRf8:ampErrMaxClr")
+{
+}
